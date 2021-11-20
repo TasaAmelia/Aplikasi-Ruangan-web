@@ -8,7 +8,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\JruanganController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ use App\Http\Controllers\PeminjamanController;
 
 Route::get('/', [GedungController::class, 'index']);
 
-Route::get('/peminjamanList', [PeminjamanController::class, 'read']);
+Route::get('/dashboard', [DashboardController::class, 'read']);
 
 Route::get('/jenisruanganList', [JruanganController::class, 'read']);
 
