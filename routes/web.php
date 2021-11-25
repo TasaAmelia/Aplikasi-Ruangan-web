@@ -9,6 +9,9 @@ use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\JruanganController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\RoomTypeController;
+use App\Models\RoomType;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +25,22 @@ use App\Http\Controllers\PeminjamanController;
 */
 
 Route::get('/', [GedungController::class, 'index']);
+Route::get('/gedungAddForm', [GedungController::class, 'add']);
+Route::post('/gedungAdd', [GedungController::class, 'create']);
+Route::get('/gedungDelete/{id}', [GedungController::class, 'delete']);
+// Route::post('/gedungAdd', [GedungController::class, 'create']);
 
 Route::get('/peminjamanList', [PeminjamanController::class, 'read']);
 
-Route::get('/jenisruanganList', [JruanganController::class, 'read']);
+Route::get('/jenisruanganList', [RoomTypeController::class, 'index']);
+Route::get('/jenisruanganAddForm', [RoomTypeController::class, 'create']);
+Route::post('/jenisruanganAdd', [RoomTypeController::class, 'store']);
+Route::get('/jenisruanganDelete/{id}', [RoomTypeController::class, 'destroy']);
 
-Route::get('/ruanganList', [RuanganController::class, 'read']);
+Route::get('/ruanganList', [RoomController::class, 'index']);
+Route::get('/ruanganAddFrom', [RoomController::class, 'create']);
+Route::post('/ruanganAdd', [RoomController::class, 'store']);
+Route::get('/ruanganDelete/{id}', [RoomController::class, 'destroy']);
 
 Route::get('/laporan', [LaporanController::class, 'read']);
 

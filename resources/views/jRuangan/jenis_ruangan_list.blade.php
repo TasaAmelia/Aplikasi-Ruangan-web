@@ -11,7 +11,54 @@
         </div>
     </div>
 
-    {{-- body --}}
+    <div class="section-body">
+
+        @if (session('statusDelete'))
+            <h6 class="alert alert-danger">{{ session('statusDelete') }}</h6>
+        @endif
+  
+        @if (session('statusAdd'))
+            <h6 class="alert alert-primary">{{ session('statusAdd') }}</h6>
+        @endif
+  
+        @if (session('statusUpdate'))
+            <h6 class="alert alert-warning">{{ session('statusUpdate') }}</h6>
+        @endif
+  
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="/jenisruanganAddForm" class="btn btn-primary">
+                            Tambah Jenis Ruangan
+                        </a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-md">
+                                <tr>
+                                    <th>Nama Jenis Ruangan</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                                @foreach ($roomtypes as $roomtype )
+                                  <tr>
+                                      <td>{{ $roomtype['roomtypename'] }}</td>
+                                      <td>{{ $roomtype['roomtypedescription'] }}</td>
+                                      <td><a href="{{ "/" .$roomtype['id'] }}" class="btn btn-warning"><i
+                                                  class="fas fa-pencil-alt"></i></a>
+                                          <a href={{ "/jenisruanganDelete/" .$roomtype['id'] }} class="btn btn-danger"
+                                              onclick="return confirm('Are you sure want to delete ?')"><i
+                                                  class="fas fa-trash"></i></a></td>
+                                  </tr>
+                                  @endforeach
+                            </table>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
 
