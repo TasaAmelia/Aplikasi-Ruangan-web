@@ -12,6 +12,7 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Models\RoomType;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::post('/gedungAdd', [GedungController::class, 'create']);
 Route::get('/gedungDelete/{id}', [GedungController::class, 'delete']);
 // Route::post('/gedungAdd', [GedungController::class, 'create']);
 
-Route::get('/peminjamanList', [PeminjamanController::class, 'read']);
+Route::get('/dashboard', [DashboardController::class, 'read']);
 
 Route::get('/jenisruanganList', [RoomTypeController::class, 'index']);
 Route::get('/jenisruanganAddForm', [RoomTypeController::class, 'create']);
