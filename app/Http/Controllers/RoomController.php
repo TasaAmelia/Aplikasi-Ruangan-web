@@ -72,9 +72,15 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function edit(Room $room)
+    public function edit($id)
     {
-        //
+        return view('ruangan.ruangan_update', [
+            'title' => 'Update Ruangan',
+            'mainTitle' => 'Ruangan',
+            'data' => Room::find($id),
+            'buildings'=> Building::all(),
+            'roomtypes'=> RoomType::all()
+        ]);
     }
 
     /**
@@ -84,9 +90,15 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Room $room)
+    public function update(Request $request)
     {
-        //
+        $data = Room::find($request -> id);
+        $data->roomname = $request->roomname;
+        $data->roomdescription = $request->roomdescription;
+        $data->roomtypename = $request->roomtypename;
+        $data->buildingname = $request->buildingname;
+        $data->save();
+        return redirect('/ruanganList')->with('statusUpdate', 'Update data sucessfully');
     }
 
     /**

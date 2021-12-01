@@ -37,14 +37,17 @@
                       <div class="table-responsive">
                           <table class="table table-striped table-md">
                               <tr>
+                                  <th>No</th>
                                   <th>Nama Gedung</th>
                                   <th>Keterangan</th>
+                                  <th>Aksi</th>
                               </tr>
                               @foreach ($buildings as $building )
                                 <tr>
+                                    <td>{{ ++$i }}</td>
                                     <td>{{ $building['buildingname'] }}</td>
                                     <td>{{ $building['buildingdescription'] }}</td>
-                                    <td><a href="{{ "/" .$building['id_gedung'] }}" class="btn btn-warning"><i
+                                    <td><a href="{{ "/gedungUpdateForm/" .$building['id'] }}" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
                                         <a href={{ "/gedungDelete/" .$building['id'] }} class="btn btn-danger"
                                             onclick="return confirm('Are you sure want to delete ?')"><i

@@ -37,7 +37,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-md">
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Username</th>
                                     <th>Usertype</th>
                                     <th>Fullname</th>

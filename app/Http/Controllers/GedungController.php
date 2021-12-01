@@ -17,8 +17,7 @@ class GedungController extends Controller
     public function add() {
         return view('gedung.gedung_add', [
             'title'     => 'Tambah Gedung',
-            'mainTitle' => 'Gedung',
-            'buildings' => Building::all()
+            'mainTitle' => 'Gedung'
         ]);
     }
 
@@ -31,25 +30,24 @@ class GedungController extends Controller
         return redirect('/')->with('statusAdd', 'Added data sucessfully !');
     }
 
-    // public function showData($id)
-    // {
-    //     return view('user.user_formUpdate', [
-    //         'title' => 'Update User',
-    //         'mainTitle' => 'User',
-    //         'data' => Building::find($id)
-    //     ]);
-    // }
+    public function showData($id)
+    {
+        return view('gedung.gedung_update', [
+            'title' => 'Update Gedung',
+            'mainTitle' => 'Gedung',
+            'data' => Building::find($id)
+        ]);
+    }
 
 
-    // public function update(Request $request)
-    // {
-    //     $data = Building::find($request -> id_gedung);
-    //     $data->username = $request->username;
-    //     $data->fullname = $request->fullname;
-    //     $data->usertype = $request->usertype;
-    //     $data->save();
-    //     return redirect('/userList')->with('statusUpdate', 'Update data sucessfully');
-    // }
+    public function update(Request $request)
+    {
+        $data = Building::find($request -> id);
+        $data->buildingname = $request->buildingname;
+        $data->buildingdescription = $request->buildingdescription;
+        $data->save();
+        return redirect('/gedungList')->with('statusUpdate', 'Update data sucessfully');
+    }
 
 
     public function delete($id)

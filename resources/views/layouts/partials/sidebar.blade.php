@@ -15,7 +15,7 @@
               </li>
             <li class="menu-header">Master Data</li>
             <li class="{{ ($title === "Data Gedung") ? 'active' : '' }}">
-                <a class="nav-link" href="/"><i class="fas fa-th-large"></i>
+                <a class="nav-link" href="/gedungList"><i class="fas fa-th-large"></i>
                     <span>Data Gedung</span>
                 </a>
             </li>

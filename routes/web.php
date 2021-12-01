@@ -25,23 +25,28 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [GedungController::class, 'index']);
+Route::get('/gedungList', [GedungController::class, 'index']);
 Route::get('/gedungAddForm', [GedungController::class, 'add']);
 Route::post('/gedungAdd', [GedungController::class, 'create']);
 Route::get('/gedungDelete/{id}', [GedungController::class, 'delete']);
-// Route::post('/gedungAdd', [GedungController::class, 'create']);
+Route::post('/gedungUpdate', [GedungController::class, 'update']);
+Route::get('/gedungUpdateForm/{id}', [GedungController::class, 'showData']);
 
-Route::get('/dashboard', [DashboardController::class, 'read']);
+Route::get('/', [DashboardController::class, 'read']);
 
 Route::get('/jenisruanganList', [RoomTypeController::class, 'index']);
 Route::get('/jenisruanganAddForm', [RoomTypeController::class, 'create']);
 Route::post('/jenisruanganAdd', [RoomTypeController::class, 'store']);
 Route::get('/jenisruanganDelete/{id}', [RoomTypeController::class, 'destroy']);
+Route::get('/jenisruanganUpdateForm/{id}', [RoomTypeController::class, 'edit']);
+Route::post('/jenisruanganUpdate', [RoomTypeController::class, 'update']);
 
 Route::get('/ruanganList', [RoomController::class, 'index']);
 Route::get('/ruanganAddFrom', [RoomController::class, 'create']);
 Route::post('/ruanganAdd', [RoomController::class, 'store']);
 Route::get('/ruanganDelete/{id}', [RoomController::class, 'destroy']);
+Route::get('/ruanganUpdateForm/{id}', [RoomController::class, 'edit']);
+Route::post('/ruanganUpdate', [RoomController::class, 'update']);
 
 Route::get('/laporan', [LaporanController::class, 'read']);
 
@@ -53,16 +58,9 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
-// Route::get('/changePass', [LoginController::class, 'show']);
-// Route::post('/changePass', [LoginController::class, 'changePassword']);
-
 Route::get('/userAdd', [UserController::class, 'add']);
 Route::post('/userAdd', [UserController::class, 'create']);
-
 Route::get('/userList', [UserController::class, 'read']);
-// Route::get('/userList', [UserController::class, 'read'])->middleware('superAdmin');
-
 Route::get('/userUpdate/{id}', [UserController::class, 'showData']);
 Route::post('/userUpdate', [UserController::class, 'update']);
-
 Route::get('/userDelete/{id}', [UserController::class, 'delete']);
