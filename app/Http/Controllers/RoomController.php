@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\Building;
+use App\Models\RoomType;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -12,11 +14,12 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('ruangan.ruangan_list', [
-            'title' => 'Data Ruangan'
-        ]);
+            'title' => 'Data Ruangan',
+            'rooms' => Room::paginate(10)->withQueryString()
+            ])->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -29,7 +32,9 @@ class RoomController extends Controller
         return view('ruangan.ruangan_add', [
             'title'     => 'Tambah Ruangan',
             'mainTitle' => 'Ruangan',
-            'rooms' => Room::all()
+            'rooms' => Room::all(),
+            'buildings'=> Building::all(),
+            'roomtypes'=> RoomType::all()
         ]);
     }
 
@@ -41,7 +46,13 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $room = new Room();
+        $room->roomname = $request->input('roomname');
+        $room->roomtypename = $request->input('roomtypename');
+        $room->buildingname = $request->input('buildingname');
+        $room->roomdescription = $request->input('roomdescription');
+        $room->save();
+        return redirect('/ruanganList')->with('statusAdd', 'Added data sucessfully !');
     }
 
     /**

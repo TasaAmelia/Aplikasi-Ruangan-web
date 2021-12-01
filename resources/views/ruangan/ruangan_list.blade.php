@@ -37,20 +37,24 @@
                       <div class="table-responsive">
                           <table class="table table-striped table-md">
                               <tr>
+                                  <th>Ruangan</th>
+                                  <th>Gedung</th>
                                   <th>Jenis Ruangan</th>
                                   <th>Keterangan</th>
                               </tr>
-                              {{-- @foreach ($buildings as $building )
+                              @foreach ($rooms as $room )
                                 <tr>
-                                    <td>{{ $building['buildingname'] }}</td>
-                                    <td>{{ $building['buildingdescription'] }}</td>
-                                    <td><a href="{{ "/" .$building['id_gedung'] }}" class="btn btn-warning"><i
+                                    <td>{{ $room['roomname'] }}</td>
+                                    <td>{{ $room['buildingname'] }}</td>
+                                    <td>{{ $room['roomtypename'] }}</td>
+                                    <td>{{ $room['roomdescription'] }}</td>
+                                    <td><a href="{{ "/" .$room['id'] }}" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <a href={{ "/gedungDelete/" .$building['id'] }} class="btn btn-danger"
+                                        <a href={{ "/ruanganDelete/" .$room['id'] }} class="btn btn-danger"
                                             onclick="return confirm('Are you sure want to delete ?')"><i
                                                 class="fas fa-trash"></i></a></td>
                                 </tr>
-                                @endforeach --}}
+                                @endforeach
                           </table>
                       </div>
                   </div>

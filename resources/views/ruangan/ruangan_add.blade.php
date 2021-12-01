@@ -29,20 +29,14 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="roomtypename">Jenis Ruangan</label>
-                            <input type="text" class="form-control @error('roomtypename') is-invalid @enderror"
-                                name="roomtypename" id="roomtypename" value="{{ old('roomtypename') }}"
-                                required autofocus>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                                    Dropdown button
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                            @error('roomtypename')
+                            <select class="form-control @error('roomtypename') is-invalid @enderror" 
+                            name="roomtypename" id="roomtypename" value="{{ old('roomtypename') }}"
+                            required autofocus>
+                            @foreach($roomtypes as $roomtype)
+                                <option>{{ $roomtype->roomtypename }}</option>
+                              </select>
+                            @endforeach
+                              @error('roomtypename')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -50,10 +44,14 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="buildingname">Gedung</label>
-                            <input type="text" class="form-control @error('buildingname') is-invalid @enderror"
-                                name="buildingname" id="buildingname" value="{{ old('buildingname') }}"
-                                required autofocus>
-                            @error('buildingname')
+                            <select class="form-control @error('buildingname') is-invalid @enderror" 
+                            name="buildingname" id="buildingname" value="{{ old('buildingname') }}"
+                            required autofocus>
+                            @foreach($buildings as $building)
+                                <option>{{ $building->buildingname }}</option>
+                              </select>
+                            @endforeach
+                              @error('buildingname')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
