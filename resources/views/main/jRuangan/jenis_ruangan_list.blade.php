@@ -16,21 +16,21 @@
         @if (session('statusDelete'))
             <h6 class="alert alert-danger">{{ session('statusDelete') }}</h6>
         @endif
-  
+
         @if (session('statusAdd'))
             <h6 class="alert alert-primary">{{ session('statusAdd') }}</h6>
         @endif
-  
+
         @if (session('statusUpdate'))
             <h6 class="alert alert-warning">{{ session('statusUpdate') }}</h6>
         @endif
-  
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <a href="/jenisruanganAddForm" class="btn btn-primary">
-                            Tambah Jenis Ruangan
+                            Create New Jenis Ruangan
                         </a>
                     </div>
                     <div class="card-body p-0">
@@ -39,11 +39,12 @@
                                 <tr>
                                     <th>Nama Jenis Ruangan</th>
                                     <th>Keterangan</th>
+                                    <th>Action</th>
                                 </tr>
                                 @foreach ($roomtypes as $roomtype )
                                   <tr>
-                                      <td>{{ $roomtype['roomtypename'] }}</td>
-                                      <td>{{ $roomtype['roomtypedescription'] }}</td>
+                                      <td>{{ $roomtype['nama_jenis_ruangan'] }}</td>
+                                      <td>{{ $roomtype['ket_jenis_ruangan'] }}</td>
                                       <td><a href="{{ "/" .$roomtype['id'] }}" class="btn btn-warning"><i
                                                   class="fas fa-pencil-alt"></i></a>
                                           <a href={{ "/jenisruanganDelete/" .$roomtype['id'] }} class="btn btn-danger"

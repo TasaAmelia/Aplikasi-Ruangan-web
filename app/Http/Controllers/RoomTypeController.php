@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisRuangan;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,9 @@ class RoomTypeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('jRuangan.jenis_ruangan_list', [
+        return view('main.jRuangan.jenis_ruangan_list', [
             'title' => 'Data Jenis Ruangan',
-            'roomtypes' => RoomType::paginate(10)->withQueryString()
+            'roomtypes' => JenisRuangan::paginate(10)->withQueryString()
             ])->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
@@ -27,10 +28,10 @@ class RoomTypeController extends Controller
      */
     public function create()
     {
-        return view('jRuangan.jenis_ruangan_add', [
+        return view('main.jRuangan.jenis_ruangan_add', [
             'title'     => 'Tambah Jenis Ruangan',
             'mainTitle' => 'Jenis Ruangan',
-            'roomtypes' => RoomType::all()
+            'roomtypes' => JenisRuangan::all()
         ]);
     }
 
@@ -42,9 +43,9 @@ class RoomTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $roomtype = new RoomType();
-        $roomtype->roomtypename = $request->input('roomtypename');
-        $roomtype->roomtypedescription = $request->input('roomtypedescription');
+        $roomtype = new JenisRuangan();
+        $roomtype->nama_jenis_ruangan = $request->input('roomtypename');
+        $roomtype->ket_jenis_ruangan = $request->input('roomtypedescription');
         $roomtype->save();
         return redirect('/jenisruanganList')->with('statusAdd', 'Added data sucessfully !');
     }
@@ -89,11 +90,11 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomType $id)
+    public function destroy(JenisRuangan $id)
     {
-        $data = RoomType::find($id);
+        $data = JenisRuangan::find($id);
         $data->each->delete();
         return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
-    
+
     }
 }

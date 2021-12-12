@@ -15,3 +15,9 @@
 
 <!-- Page Specific JS File -->
 <script src="../assets/js/page/components-table.js"></script>
+
+<script>
+    document.addEventListener('trix-file-accept', function(e) {
+        e.preventDefault();
+    })
+</script>

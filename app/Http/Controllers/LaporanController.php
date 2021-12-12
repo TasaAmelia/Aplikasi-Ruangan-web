@@ -8,7 +8,7 @@ class LaporanController extends Controller
 {
     public function read()
     {
-        return view('laporan.laporan', [
+        return view('main.laporan.laporan', [
             'title' => 'Laporan'
         ]);
     }

@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function add()
     {
-        return view('user.user_formAdd', [
+        return view('main.user.user_formAdd', [
             'title'     => 'Add User',
             'mainTitle' => 'User',
             'user' => User::all()
@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function read(Request $request)
     {
-        return view('user.user_list', [
+        return view('main.user.user_list', [
             'title'     => 'User',
             'users'     => User::paginate(10)->withQueryString()
         ])->with('i', ($request->input('page', 1) - 1) * 10);
@@ -43,7 +43,7 @@ class UserController extends Controller
 
     public function showData($id)
     {
-        return view('user.user_formUpdate', [
+        return view('main.user.user_formUpdate', [
             'title' => 'Update User',
             'mainTitle' => 'User',
             'data' => User::find($id)

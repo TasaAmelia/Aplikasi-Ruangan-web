@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <input type="hidden" name="id" value="{{ $data['id'] }}">
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-8">
                             <label for="username">Username</label>
                             <input type="text" class="form-control @error('username') is-invalid @enderror"
                                 name="username" id="username" placeholder="Username"
@@ -30,7 +30,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-8">
                             <label for="inputState">Usertype</label>
                             <select name="usertype" id="usertype"
                                 class="form-control @error('usertype') is-invalid @enderror" required>
@@ -46,7 +46,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-8">
                             <label for="username">Fullname</label>
                             <input type="text" class="form-control" name="fullname" id="fullname"
                                 placeholder="Fullname @error('fullname') is-invalid @enderror" required

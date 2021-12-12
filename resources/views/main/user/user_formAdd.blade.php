@@ -1,23 +1,21 @@
 @extends('layouts.layouts_main')
-@section('container')
 
+@section("container")
 <section class="section">
     <div class="section-header">
-        <h1>{{ $title }}</h1>
+        <h1>New User</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="/userList">{{ $mainTitle }}</a></div>
-            <div class="breadcrumb-item">{{ $title }}</div>
+            <div class="breadcrumb-item active"><a href="/main/user">User</a></div>
+            <div class="breadcrumb-item">New User</div>
         </div>
     </div>
     <div class="section-body">
-        <h2 class="section-title">{{ $title }}</h2>
-
-        <form action="/userAdd" method="POST">
+        <form method="POST" action="/userAdd">
             @csrf
             <div class="card">
                 <div class="card-body">
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-8">
                             <label for="username">Username</label>
                             <input type="text" class="form-control @error('username') is-invalid @enderror"
                                 name="username" id="username" placeholder="Username" value="{{ old('username') }}"
@@ -28,7 +26,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-8">
                             <label for="usertype">Usertype</label>
                             <select name="usertype" id="usertype"
                                 class="form-control @error('usertype') is-invalid @enderror">
@@ -43,7 +41,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-8">
                             <label for="fullname">Fullname</label>
                             <input type="text" class="form-control @error('fullname') is-invalid @enderror"
                                 name="fullname" id="fullname" placeholder="Fullname" value="{{ old('fullname') }}"
@@ -63,5 +61,6 @@
         </form>
 
     </div>
+</section>
 
-    @endsection
+@endsection
