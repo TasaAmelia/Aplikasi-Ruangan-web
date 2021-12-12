@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\JenisRuangan;
-use App\Models\RoomType;
 use Illuminate\Http\Request;
 
-class RoomTypeController extends Controller
+class JenisRuanganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,8 +28,7 @@ class RoomTypeController extends Controller
     public function create()
     {
         return view('main.jRuangan.jenis_ruangan_add', [
-            'title'     => 'Tambah Jenis Ruangan',
-            'mainTitle' => 'Jenis Ruangan',
+            'title'     => 'Data Jenis Ruangan',
             'roomtypes' => JenisRuangan::all()
         ]);
     }
@@ -47,7 +45,7 @@ class RoomTypeController extends Controller
         $roomtype->nama_jenis_ruangan = $request->input('roomtypename');
         $roomtype->ket_jenis_ruangan = $request->input('roomtypedescription');
         $roomtype->save();
-        return redirect('/jenisruanganList')->with('statusAdd', 'Added data sucessfully !');
+        return redirect('/jenisruanganList')->with('statusAdd', 'Added data jenis ruangan sucessfully !');
     }
 
     /**
@@ -56,7 +54,7 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function show(RoomType $roomType)
+    public function show()
     {
         //
     }
@@ -69,10 +67,9 @@ class RoomTypeController extends Controller
      */
     public function edit($id)
     {
-        return view('jRuangan.jenis_ruangan_update', [
-            'title' => 'Update Jenis Ruangan',
-            'mainTitle' => 'Jenis Ruangan',
-            'data' => RoomType::find($id)
+        return view('main.jRuangan.jenis_ruangan_update', [
+            'title' => 'Data Jenis Ruangan',
+            'data' => JenisRuangan::find($id)
         ]);
     }
 
@@ -85,11 +82,11 @@ class RoomTypeController extends Controller
      */
     public function update(Request $request)
     {
-        $data = RoomType::find($request -> id);
-        $data->roomtypename = $request->roomtypename;
-        $data->roomtypedescription = $request->roomtypedescription;
+        $data = JenisRuangan::find($request -> id);
+        $data->nama_jenis_ruangan = $request->roomtypename;
+        $data->ket_jenis_ruangan = $request->roomtypedescription;
         $data->save();
-        return redirect('/jenisruanganList')->with('statusUpdate', 'Update data sucessfully');
+        return redirect('/jenisruanganList')->with('statusUpdate', 'Update data jenis ruangan sucessfully');
     }
 
     /**
@@ -102,7 +99,7 @@ class RoomTypeController extends Controller
     {
         $data = JenisRuangan::find($id);
         $data->each->delete();
-        return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        return redirect()->back()->with('statusDelete', 'Delete data jenis ruangan sucessfully !');
 
     }
 }

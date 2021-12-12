@@ -29,7 +29,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/jenisruanganAddForm" class="btn btn-primary">
+                        <a href="/jenisruanganAdd" class="btn btn-primary">
                             Create New Jenis Ruangan
                         </a>
                     </div>
@@ -39,14 +39,15 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Jenis Ruangan</th>
-                                    <th>Keterangan</th>
+                                    <th>Keterangan Jenis Ruangan</th>
                                     <th>Action</th>
                                 </tr>
                                 @foreach ($roomtypes as $roomtype )
                                   <tr>
+                                      <td>{{ ++$i }}</td>
                                       <td>{{ $roomtype['nama_jenis_ruangan'] }}</td>
                                       <td>{{ $roomtype['ket_jenis_ruangan'] }}</td>
-                                      <td><a href="{{ "/" .$roomtype['id'] }}" class="btn btn-warning"><i
+                                      <td><a href="{{ "/jenisruanganUpdate/" .$roomtype['id'] }}" class="btn btn-warning"><i
                                                   class="fas fa-pencil-alt"></i></a>
                                           <a href={{ "/jenisruanganDelete/" .$roomtype['id'] }} class="btn btn-danger"
                                               onclick="return confirm('Are you sure want to delete ?')"><i

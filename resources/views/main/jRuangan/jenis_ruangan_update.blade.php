@@ -1,16 +1,16 @@
 @extends('layouts.layouts_main')
+
 @section('container')
+
 <section class="section">
     <div class="section-header">
-        <h1>{{ $title }}</h1>
+        <h1>Update Jenis Ruangan</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="/userList">{{ $mainTitle }}</a></div>
-            <div class="breadcrumb-item">{{ $title }}</div>
+            <div class="breadcrumb-item active"><a href="/jenisruanganList">{{ $title }}</a></div>
+            <div class="breadcrumb-item">Update Jenis Ruangan</div>
         </div>
     </div>
     <div class="section-body">
-        <h2 class="section-title">{{ $title }}</h2>
-
         <form action="/jenisruanganUpdate" method="POST">
             @csrf
             <div class="card">
@@ -20,8 +20,8 @@
                         <div class="form-group col-md-6">
                             <label for="roomtypename">Nama Jenis Ruangan</label>
                             <input type="text" class="form-control @error('roomtypename') is-invalid @enderror"
-                                name="roomtypename" id="roomtypename" placeholder="Nama Jenis Ruangan" value="{{ old('roomtypename', $data->roomtypename) }}"
-                                required>
+                                name="roomtypename" id="roomtypename" placeholder="Nama Jenis Ruangan"
+                                value="{{ old('roomtypename', $data->nama_jenis_ruangan) }}" required>
                             @error('roomtypename')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -29,10 +29,10 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="roomtypedescription">Keterangan</label>
+                            <label for="roomtypedescription">Keterangan Jenis Ruangan</label>
                             <input type="text" class="form-control @error('roomtypedescription') is-invalid @enderror"
-                                name="roomtypedescription" id="roomtypedescription" placeholder="Keterangan" value="{{ old('roomtypedescription', $data->roomtypedescription) }}"
-                                required>
+                                name="roomtypedescription" id="roomtypedescription" placeholder="Keterangan"
+                                value="{{ old('roomtypedescription', $data->ket_jenis_ruangan) }}" required>
                             @error('roomtypedescription')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -48,4 +48,5 @@
         </form>
 
     </div>
-    @endsection
+</section>
+@endsection

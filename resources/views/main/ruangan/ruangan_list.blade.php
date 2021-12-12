@@ -6,7 +6,7 @@
       <div class="section-header">
         <h1>List Ruangan</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="/">{{ $title }}</a></div>
+            <div class="breadcrumb-item active"><a href="/ruanganList">{{ $title }}</a></div>
             <div class="breadcrumb-item">List Ruangan</div>
         </div>
       </div>
@@ -29,7 +29,7 @@
           <div class="col-12">
               <div class="card">
                   <div class="card-header">
-                      <a href="/ruanganAddFrom" class="btn btn-primary">
+                      <a href="/ruanganAdd" class="btn btn-primary">
                           Create New Ruangan
                       </a>
                   </div>
@@ -37,12 +37,23 @@
                       <div class="table-responsive">
                           <table class="table table-striped table-md">
                               <tr>
-
+                                  <th>No</th>
                                   <th>Gedung</th>
                                   <th>Jenis Ruangan</th>
                                   <th>Nama Ruangan</th>
-                                  <th>Keterangan</th>
-
+                                  <th>Keterangan Ruangan</th>
+                                  <th>Action</th>
+                                </tr>
+                                @foreach ($rooms as $room)
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $room->gedung->nama_gedung }}</td>
+                                    <td>{{ $room->jenisRuangan->nama_jenis_ruangan }}</td>
+                                    <td>{{ $room['nama_ruangan'] }}</td>
+                                    <td>{{ $room['ket_ruangan'] }}</td>
+                                    <td><a href="{{ "/ruanganUpdate/" .$room['id'] }}" class="btn btn-warning"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <a href={{ "/ruanganDelete/" .$room['id'] }} class="btn btn-danger"
                                             onclick="return confirm('Are you sure want to delete ?')"><i
                                                 class="fas fa-trash"></i></a></td>
                                 </tr>
@@ -55,6 +66,5 @@
           </div>
       </div>
   </div>
-
 
 @endsection

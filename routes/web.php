@@ -7,8 +7,8 @@ use App\Http\Controllers\GedungController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PeminjamanController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\JenisRuanganController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -23,35 +23,37 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/gedungList', [GedungController::class, 'index']);
-Route::get('/gedungAddForm', [GedungController::class, 'add']);
+Route::get('/gedungAdd', [GedungController::class, 'add']);
 Route::post('/gedungAdd', [GedungController::class, 'create']);
+Route::get('/gedungUpdate/{id}', [GedungController::class, 'showData']);
+Route::post('/gedungUpdate', [GedungController::class, 'Update']);
 Route::get('/gedungDelete/{id}', [GedungController::class, 'delete']);
 
-//contoh pinjam
-Route::get('/peminjamanAdd', [PeminjamanController::class, 'pinjam']);
-Route::get('/peminjamanList', [PeminjamanController::class, 'list']);
 
-Route::post('/gedungUpdate', [GedungController::class, 'update']);
-Route::get('/gedungUpdateForm/{id}', [GedungController::class, 'showData']);
+Route::get('/jenisruanganList', [JenisRuanganController::class, 'index']);
+Route::get('/jenisruanganAdd', [JenisRuanganController::class, 'create']);
+Route::post('/jenisruanganAdd', [JenisRuanganController::class, 'store']);
+Route::get('/jenisruanganUpdate/{id}', [JenisRuanganController::class, 'edit']);
+Route::post('/jenisruanganUpdate', [JenisRuanganController::class, 'update']);
+Route::get('/jenisruanganDelete/{id}', [JenisRuanganController::class, 'destroy']);
+
+
+Route::get('/ruanganList', [RuanganController::class, 'index']);
+Route::get('/ruanganAdd', [RuanganController::class, 'create']);
+Route::post('/ruanganAdd', [RuanganController::class, 'store']);
+Route::get('/ruanganUpdate/{id}', [RuanganController::class, 'edit']);
+Route::post('/ruanganUpdate', [RuanganController::class, 'update']);
+Route::get('/ruanganDelete/{id}', [RuanganController::class, 'destroy']);
+
+
+Route::get('/peminjamanList', [PeminjamanController::class, 'list']);
+Route::get('/peminjamanAdd', [PeminjamanController::class, 'pinjam']);
+
+
 
 Route::get('/', [DashboardController::class, 'read']);
 
-Route::get('/jenisruanganList', [RoomTypeController::class, 'index']);
-Route::get('/jenisruanganAddForm', [RoomTypeController::class, 'create']);
-Route::post('/jenisruanganAdd', [RoomTypeController::class, 'store']);
-Route::get('/jenisruanganDelete/{id}', [RoomTypeController::class, 'destroy']);
-Route::get('/jenisruanganUpdateForm/{id}', [RoomTypeController::class, 'edit']);
-Route::post('/jenisruanganUpdate', [RoomTypeController::class, 'update']);
-
-Route::get('/ruanganList', [RoomController::class, 'index']);
-Route::get('/ruanganAddFrom', [RoomController::class, 'create']);
-Route::post('/ruanganAdd', [RoomController::class, 'store']);
-Route::get('/ruanganDelete/{id}', [RoomController::class, 'destroy']);
-Route::get('/ruanganUpdateForm/{id}', [RoomController::class, 'edit']);
-Route::post('/ruanganUpdate', [RoomController::class, 'update']);
-
 Route::get('/laporan', [LaporanController::class, 'read']);
-
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'auth']);
@@ -59,8 +61,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // Route::get('/register', [RegisterController::class, 'index']);
 // Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store']);
+// Route::get('/register', [RegisterController::class, 'index']);
+// Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/userAdd', [UserController::class, 'add']);
 Route::post('/userAdd', [UserController::class, 'create']);

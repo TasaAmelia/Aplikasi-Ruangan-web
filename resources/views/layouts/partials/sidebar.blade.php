@@ -8,13 +8,14 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-              <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                <a href="/dashboard" class="nav-link"><i class="fas fa-fire"></i>
+              <li class="{{ Request::is('/') ? 'active' : '' }}">
+                <a href="/" class="nav-link"><i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
               </li>
             <li class="menu-header">Master Data</li>
-
+            <li class="{{ Request::is('gedungList') ? 'active' : '' }}">
+                <a class="nav-link" href="/gedungList"><i class="fas fa-building"></i>
                     <span>Data Gedung</span>
                 </a>
             </li>
