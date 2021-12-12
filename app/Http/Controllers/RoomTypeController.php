@@ -67,9 +67,13 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomType $roomType)
+    public function edit($id)
     {
-        //
+        return view('jRuangan.jenis_ruangan_update', [
+            'title' => 'Update Jenis Ruangan',
+            'mainTitle' => 'Jenis Ruangan',
+            'data' => RoomType::find($id)
+        ]);
     }
 
     /**
@@ -79,9 +83,13 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoomType $roomType)
+    public function update(Request $request)
     {
-        //
+        $data = RoomType::find($request -> id);
+        $data->roomtypename = $request->roomtypename;
+        $data->roomtypedescription = $request->roomtypedescription;
+        $data->save();
+        return redirect('/jenisruanganList')->with('statusUpdate', 'Update data sucessfully');
     }
 
     /**

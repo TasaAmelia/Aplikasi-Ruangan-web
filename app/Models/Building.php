@@ -9,4 +9,8 @@ class Building extends Model
 {
     use HasFactory;
     // protected $guarded = ['id_gedung'];
+
+    public function room(){
+        return $this->hasOne(Room::class);
+    }
 }

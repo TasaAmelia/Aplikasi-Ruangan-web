@@ -37,6 +37,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-md">
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama Jenis Ruangan</th>
                                     <th>Keterangan</th>
                                     <th>Action</th>

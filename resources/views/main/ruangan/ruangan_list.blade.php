@@ -37,21 +37,12 @@
                       <div class="table-responsive">
                           <table class="table table-striped table-md">
                               <tr>
+
                                   <th>Gedung</th>
                                   <th>Jenis Ruangan</th>
                                   <th>Nama Ruangan</th>
                                   <th>Keterangan</th>
-                                  <th>Action</th>
-                              </tr>
-                              @foreach ($ruangans as $ruangan )
-                                <tr>
-                                    <td>{{ $ruangan->gedung->nama_gedung }}</td>
-                                    <td>{{ $ruangan->jenisRuangan->nama_jenis_ruangan }}</td>
-                                    <td>{{ $ruangan['nama_ruangan'] }}</td>
-                                    <td>{{ $ruangan['ket_ruangan'] }}</td>
-                                    <td><a href="{{ "/" .$ruangan['id'] }}" class="btn btn-warning"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a href={{ "/ruanganDelete/" .$ruangan['id'] }} class="btn btn-danger"
+
                                             onclick="return confirm('Are you sure want to delete ?')"><i
                                                 class="fas fa-trash"></i></a></td>
                                 </tr>

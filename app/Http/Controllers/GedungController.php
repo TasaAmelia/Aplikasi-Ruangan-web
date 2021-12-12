@@ -18,8 +18,7 @@ class GedungController extends Controller
     public function add() {
         return view('main.gedung.gedung_add', [
             'title'     => 'Tambah Gedung',
-            'mainTitle' => 'Gedung',
-            'buildings' => Gedung::all()
+
         ]);
     }
 
@@ -34,22 +33,17 @@ class GedungController extends Controller
 
     public function showData($id)
     {
-        return view('user.user_formUpdate', [
-            'title' => 'Update User',
-            'mainTitle' => 'User',
-            'data' => Gedung::find($id)
+        return view('gedung.gedung_update', [
+            'title' => 'Update Gedung',
+            'mainTitle' => 'Gedung',
+            'data' => Building::find($id)
         ]);
     }
 
 
     public function update(Request $request)
     {
-        $data = Building::find($request -> id_gedung);
-        $data->username = $request->username;
-        $data->fullname = $request->fullname;
-        $data->usertype = $request->usertype;
-        $data->save();
-        return redirect('/userList')->with('statusUpdate', 'Update data sucessfully');
+
     }
 
 

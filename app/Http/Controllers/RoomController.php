@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
-use App\Models\Ruangan;
+
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -15,9 +15,9 @@ class RoomController extends Controller
      */
     public function index(Request $request)
     {
-        return view('main.ruangan.ruangan_list', [
+        return view('ruangan.ruangan_list', [
             'title' => 'Data Ruangan',
-            'ruangans' => Ruangan::paginate(10)->withQueryString()
+            'rooms' => Room::paginate(10)->withQueryString()
             ])->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
@@ -31,7 +31,9 @@ class RoomController extends Controller
         return view('main.ruangan.ruangan_add', [
             'title'     => 'Tambah Ruangan',
             'mainTitle' => 'Ruangan',
-            'rooms' => Room::all()
+            'rooms' => Room::all(),
+            'buildings'=> Building::all(),
+            'roomtypes'=> RoomType::all()
         ]);
     }
 
@@ -43,7 +45,13 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $room = new Room();
+        $room->roomname = $request->input('roomname');
+        $room->roomtypename = $request->input('roomtypename');
+        $room->buildingname = $request->input('buildingname');
+        $room->roomdescription = $request->input('roomdescription');
+        $room->save();
+        return redirect('/ruanganList')->with('statusAdd', 'Added data sucessfully !');
     }
 
     /**
@@ -63,9 +71,15 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function edit(Room $room)
+    public function edit($id)
     {
-        //
+        return view('ruangan.ruangan_update', [
+            'title' => 'Update Ruangan',
+            'mainTitle' => 'Ruangan',
+            'data' => Room::find($id),
+            'buildings'=> Building::all(),
+            'roomtypes'=> RoomType::all()
+        ]);
     }
 
     /**
@@ -75,9 +89,15 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Room $room)
+    public function update(Request $request)
     {
-        //
+        $data = Room::find($request -> id);
+        $data->roomname = $request->roomname;
+        $data->roomdescription = $request->roomdescription;
+        $data->roomtypename = $request->roomtypename;
+        $data->buildingname = $request->buildingname;
+        $data->save();
+        return redirect('/ruanganList')->with('statusUpdate', 'Update data sucessfully');
     }
 
     /**

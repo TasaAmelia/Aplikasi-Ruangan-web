@@ -14,8 +14,7 @@
                 </a>
               </li>
             <li class="menu-header">Master Data</li>
-            <li class="{{ Request::is('/') ? 'active' : '' }}">
-                <a class="nav-link" href="/"><i class="fas fa-building"></i>
+
                     <span>Data Gedung</span>
                 </a>
             </li>
