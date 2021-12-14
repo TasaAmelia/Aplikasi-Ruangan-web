@@ -9,7 +9,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
               <li class="{{ ($title === "Dashboard") ? 'active' : '' }}">
-                <a href="/dashboard" class="nav-link"><i class="fas fa-fire"></i>
+                <a href="/" class="nav-link"><i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
               </li>

@@ -34,8 +34,8 @@
                             required autofocus>
                             @foreach($roomtypes as $roomtype)
                                 <option>{{ $roomtype->roomtypename }}</option>
+                                @endforeach
                               </select>
-                            @endforeach
                               @error('roomtypename')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -49,8 +49,8 @@
                             required autofocus>
                             @foreach($buildings as $building)
                                 <option>{{ $building->buildingname }}</option>
+                                @endforeach
                               </select>
-                            @endforeach
                               @error('buildingname')
                             <div class="invalid-feedback">
                                 {{ $message }}
