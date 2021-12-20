@@ -13,6 +13,8 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Models\RoomType;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RentalController;
+use App\Models\Rental;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,13 @@ Route::post('/ruanganAdd', [RoomController::class, 'store']);
 Route::get('/ruanganDelete/{id}', [RoomController::class, 'destroy']);
 Route::get('/ruanganUpdateForm/{id}', [RoomController::class, 'edit']);
 Route::post('/ruanganUpdate', [RoomController::class, 'update']);
+
+Route::get('/peminjamanList', [RentalController::class, 'index']);
+Route::get('/peminjamanAddForm', [RentalController::class, 'create']);
+Route::post('/peminjamanAdd', [RentalController::class, 'store']);
+Route::get('/peminjamanDelete/{id}', [RentalController::class, 'destroy']);
+Route::get('/peminjamanUpdateForm/{id}', [RentalController::class, 'edit']);
+Route::post('/peminjamanUpdate', [RentalController::class, 'update']);
 
 Route::get('/laporan', [LaporanController::class, 'read']);
 

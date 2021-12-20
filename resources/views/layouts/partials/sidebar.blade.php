@@ -35,12 +35,12 @@
                     <span>User</span>
                 </a>
             </li>
-            {{-- <li class="menu-header">Peminjaman</li>
+            <li class="menu-header">Peminjaman</li>
             <li class="{{ ($title === "Peminjaman") ? 'active' : '' }}">
                 <a href="/peminjamanList" class="nav-link"><i class="fas fa-pencil-ruler"></i>
                     <span>Peminjaman</span>
                 </a>
-            </li> --}}
+            </li>
         </ul>
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
             <a href="/laporan" class="btn btn-primary btn-lg btn-block btn-icon-split">

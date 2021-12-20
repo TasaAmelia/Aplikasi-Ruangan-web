@@ -27,7 +27,7 @@ class GedungController extends Controller
         $building->buildingname = $request->input('buildingname');
         $building->buildingdescription = $request->input('buildingdescription');
         $building->save();
-        return redirect('/')->with('statusAdd', 'Added data sucessfully !');
+        return redirect('/gedungList')->with('statusAdd', 'Added data sucessfully !');
     }
 
     public function showData($id)

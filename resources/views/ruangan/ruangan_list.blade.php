@@ -13,16 +13,40 @@
     </section>
     <div class="section-body">
 
-      @if (session('statusDelete'))
-          <h6 class="alert alert-danger">{{ session('statusDelete') }}</h6>
+    @if (session('statusDelete'))
+        <div class="alert alert-danger alert-dismissible show fade">
+            <div class="alert-body">
+            <button type="button" class="close" data-dismiss="alert">
+                <span>x</span>
+            </button>
+            <strong>{{ session('statusDelete') }}</strong>
+            </div>
+        </div>
+          {{-- <h6 class="alert alert-danger alert-dismissible">{{ session('statusDelete') }}</h6> --}}
       @endif
 
       @if (session('statusAdd'))
-          <h6 class="alert alert-primary">{{ session('statusAdd') }}</h6>
+      <div class="alert alert-primary alert-dismissible show fade">
+          <div class="alert-body">
+            <button type="button" class="close" data-dismiss="alert">
+                <span>x</span>
+            </button>
+            <strong>{{ session('statusAdd') }}</strong>
+          </div>
+      </div>
+          {{-- <h6 class="alert alert-primary alert-dismissible">{{ session('statusAdd') }}</h6> --}}
       @endif
 
       @if (session('statusUpdate'))
-          <h6 class="alert alert-warning">{{ session('statusUpdate') }}</h6>
+        <div class="alert alert-warning alert-dismissible show fade">
+            <div class="alert-body">
+            <button type="button" class="close" data-dismiss="alert">
+                <span>x</span>
+            </button>
+            <strong>{{ session('statusUpdate') }}</strong>
+            </div>
+        </div>
+          {{-- <h6 class="alert alert-warning">{{ session('statusUpdate') }}</h6> --}}
       @endif
 
       <div class="row">
@@ -53,7 +77,7 @@
                                     <td>{{ $room['roomdescription'] }}</td>
                                     <td><a href="{{ "/ruanganUpdateForm/" .$room['id'] }}" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <a href={{ "/ruanganDelete/" .$room['id'] }} class="btn btn-danger"
+                                        <a href={{ "/ruanganDelete/" .$room['id'] }} class="btn btn-danger trigger--fire-modal-7"
                                             onclick="return confirm('Are you sure want to delete ?')"><i
                                                 class="fas fa-trash"></i></a></td>
                                 </tr>
