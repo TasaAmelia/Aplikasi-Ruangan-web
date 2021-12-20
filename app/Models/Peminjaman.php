@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Peminjaman extends Model
 {
     use HasFactory;
+
+    public function ruangan()
+    {
+        return $this->belongsTo(Ruangan::class);
+    }
 }

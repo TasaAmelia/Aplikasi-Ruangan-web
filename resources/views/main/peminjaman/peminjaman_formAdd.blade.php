@@ -4,24 +4,27 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>Form Add Peminjaman</h1>
+        <h1>Add Peminjaman</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="/peminjamanList">{{ $title }}</a></div>
-            <div class="breadcrumb-item">Form Add Peminjaman</div>
+            <div class="breadcrumb-item">Add Peminjaman</div>
         </div>
     </div>
 
     <div class="section-body">
-        <form action="/peminjaman" method="POST">
+        <form action="/peminjamanAdd" method="POST">
             @csrf
             <div class="card">
                 <div class="card-body">
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="nama_ruangan">Nama Ruangan</label>
-                            <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                name="nama_ruangan" id="nama_ruangan" placeholder="J000" value="{{ old('nama_ruangan') }}"
-                                required autofocus>
+                            <select class="form-control @error('nama_ruangan') is-invalid @enderror" name="nama_ruangan"
+                                id="nama_ruangan" value="{{ old('nama_ruangan') }}"  required autofocus>
+                                @foreach($peminjaman as $data)
+                                <option>{{ $data->ruangan->nama_ruangan }}</option>
+                                @endforeach
+                            </select>
                             @error('nama_ruangan')
                             <div class="invalid-feedback">
                                 {{ $message }}

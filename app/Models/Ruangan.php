@@ -18,4 +18,9 @@ class Ruangan extends Model
     {
         return $this->belongsTo(JenisRuangan::class);
     }
+
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
 }

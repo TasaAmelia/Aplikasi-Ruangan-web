@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisRuangan;
 use App\Models\Ruangan;
+use App\Models\Gedung;
 use Illuminate\Http\Request;
 
 class RuanganController extends Controller
@@ -15,8 +17,8 @@ class RuanganController extends Controller
     public function index(Request $request)
     {
         return view('main.ruangan.ruangan_list', [
-            'title' => 'Data Ruangan',
-            'rooms' => Ruangan::paginate(10)->withQueryString()
+            'title'     => 'Data Ruangan',
+            'rooms'     => Ruangan::paginate(10)->withQueryString()
             ])->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
@@ -29,7 +31,9 @@ class RuanganController extends Controller
     {
         return view('main.ruangan.ruangan_add', [
             'title'     => 'Data Ruangan',
-            'rooms' => Ruangan::all()
+            'gedung'    => Gedung::all(),
+            'jenis'     => JenisRuangan::all(),
+            'rooms'     => Ruangan::all()
         ]);
     }
 
@@ -41,11 +45,15 @@ class RuanganController extends Controller
      */
     public function store(Request $request)
     {
-        $room = new Ruangan();
-        $room->nama_ruangan = $request->input('roomname');
-        $room->ket_ruangan = $request->input('roomdescription');
-        $room->save();
-        return redirect('/ruanganList')->with('statusAdd', 'Added data ruangan sucessfully !');
+        // $room = new Ruangan();
+        // $room->gedung_id        = $request->input('buildingname');
+        // $room->jenis_ruangan_id = $request->input('roomtypename');
+        // $room->nama_ruangan     = $request->input('roomname');
+        // $room->ket_ruangan      = $request->input('roomdescription');
+        // $room->save();
+        // return redirect('/ruanganList')->with('statusAdd', 'Added data ruangan sucessfully !');
+
+        return $request;
     }
 
     /**
@@ -54,7 +62,7 @@ class RuanganController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Ruangan $ruangan)
     {
         //
     }
@@ -68,8 +76,8 @@ class RuanganController extends Controller
     public function edit($id)
     {
         return view('main.ruangan.ruangan_update', [
-            'title' => 'Data Ruangan',
-            'data' => Ruangan::find($id)
+            'title'     => 'Data Ruangan',
+            'data'      => Ruangan::find($id)
         ]);
     }
 
@@ -82,9 +90,9 @@ class RuanganController extends Controller
      */
     public function update(Request $request)
     {
-        $data = Ruangan::find($request -> id);
+        $data               = Ruangan::find($request -> id);
         $data->nama_ruangan = $request->roomname;
-        $data->ket_ruangan = $request->roomdescription;
+        $data->ket_ruangan  = $request->roomdescription;
         $data->save();
         return redirect('/ruanganList')->with('statusUpdate', 'Update data ruangan sucessfully');
     }

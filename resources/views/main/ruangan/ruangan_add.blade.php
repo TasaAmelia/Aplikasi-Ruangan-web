@@ -19,9 +19,10 @@
                         <div class="form-group col-md-8">
                             <label for="buildingname">Gedung</label>
                             <select class="form-control @error('buildingname') is-invalid @enderror" name="buildingname"
-                                id="buildingname" value="{{ old('buildingname') }}"  required autofocus>
-                                @foreach($rooms as $room)
-                                <option>{{ $room->gedung->nama_gedung }}</option>
+                                id="buildingname" required autofocus>
+                                <option>--select--</option>
+                                @foreach($gedung as $gedung)
+                                <option value="{{ $gedung->gedung_id}}">{{ $gedung->nama_gedung }}</option>
                                 @endforeach
                             </select>
                             @error('buildingname')
@@ -33,9 +34,12 @@
                         <div class="form-group col-md-8">
                             <label for="roomtypename">Jenis Ruangan</label>
                             <select class="form-control @error('roomtypename') is-invalid @enderror" name="roomtypename"
-                                id="roomtypename" value="{{ old('roomtypename') }}" required autofocus>
-                                @foreach($rooms as $room)
-                                <option>{{ $room->jenisRuangan->nama_jenis_ruangan }}</option>
+                                id="roomtypename" required>
+                                <option>--select--</option>
+                                @foreach($jenis as $jenis)
+                                <option value="{{ $jenis->jenis_ruangan_id }}
+                                    ">
+                                    {{ $jenis->nama_jenis_ruangan }}</option>
                                 @endforeach
                             </select>
                             @error('roomtypename')
@@ -76,4 +80,4 @@
 
     </div>
 </section>
-    @endsection
+@endsection

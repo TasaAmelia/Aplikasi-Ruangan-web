@@ -46,8 +46,9 @@ Route::post('/ruanganUpdate', [RuanganController::class, 'update']);
 Route::get('/ruanganDelete/{id}', [RuanganController::class, 'destroy']);
 
 
-Route::get('/peminjamanList', [PeminjamanController::class, 'list']);
-Route::get('/peminjamanAdd', [PeminjamanController::class, 'pinjam']);
+Route::get('/peminjamanList', [PeminjamanController::class, 'read']);
+Route::get('/peminjamanAdd', [PeminjamanController::class, 'add']);
+Route::post('/peminjamanAdd', [PeminjamanController::class, 'create']);
 
 
 

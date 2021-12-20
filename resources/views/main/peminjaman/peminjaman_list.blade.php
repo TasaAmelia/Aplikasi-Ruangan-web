@@ -5,7 +5,7 @@
     <div class="section-header">
         <h1>List Peminjaman</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="/#">{{ $title }}</a></div>
+            <div class="breadcrumb-item active"><a href="/peminjamanList">{{ $title }}</a></div>
             <div class="breadcrumb-item">List Peminjaman</div>
         </div>
     </div>
@@ -13,15 +13,15 @@
     <div class="section-body">
 
         @if (session('statusDelete'))
-            <h6 class="alert alert-danger">{{ session('statusDelete') }}</h6>
+        <h6 class="alert alert-danger">{{ session('statusDelete') }}</h6>
         @endif
 
         @if (session('statusAdd'))
-            <h6 class="alert alert-primary">{{ session('statusAdd') }}</h6>
+        <h6 class="alert alert-primary">{{ session('statusAdd') }}</h6>
         @endif
 
         @if (session('statusUpdate'))
-            <h6 class="alert alert-warning">{{ session('statusUpdate') }}</h6>
+        <h6 class="alert alert-warning">{{ session('statusUpdate') }}</h6>
         @endif
 
         <div class="row">
@@ -45,20 +45,21 @@
                                     <th>Ket Peminjaman</th>
                                     <th>Action</th>
                                 </tr>
+                                @foreach ($peminjamans as $data)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><a href="" class="btn btn-warning"><i
-                                                class="fas fa-pencil-alt"></i></a>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $data->ruangan->nama_ruangan }}</td>
+                                    <td>{{ $data['jenis_pinjaman'] }}</td>
+                                    <td>{{ $data['nama_peminjam'] }}</td>
+                                    <td>{{ $data['tgl_awal_pinjam'] }}</td>
+                                    <td>{{ $data['tgl_akhir_pinjam'] }}</td>
+                                    <td>{{ $data['ket_peminjaman'] }}</td>
+                                    <td><a href="" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                                         <a href="" class="btn btn-danger"
                                             onclick="return confirm('Are you sure want to delete ?')"><i
                                                 class="fas fa-trash"></i></a></td>
                                 </tr>
+                                @endforeach
                             </table>
                         </div>
                     </div>
