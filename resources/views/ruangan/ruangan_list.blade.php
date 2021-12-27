@@ -70,10 +70,10 @@
                               </tr>
                               @foreach ($rooms as $room )
                                 <tr>
-                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $rooms->firstItem() + $loop->index }}</td>
                                     <td>{{ $room['roomname'] }}</td>
-                                    <td>{{ $room['buildingname'] }}</td>
-                                    <td>{{ $room['roomtypename'] }}</td>
+                                    <td>{{ $room->building->buildingname }}</td>
+                                    <td>{{ $room->roomtype->roomtypename }}</td>
                                     <td>{{ $room['roomdescription'] }}</td>
                                     <td><a href="{{ "/ruanganUpdateForm/" .$room['id'] }}" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
@@ -85,11 +85,10 @@
                           </table>
                       </div>
                   </div>
-                  <div class="d-flex justify-content-end"></div>
+                  <div class="d-flex justify-content-center">{{ $rooms->links() }} </div>
               </div>
           </div>
       </div>
   </div>
-
 
 @endsection

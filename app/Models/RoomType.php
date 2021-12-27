@@ -10,7 +10,7 @@ class RoomType extends Model
     use HasFactory;
 
     public function room(){
-        return $this->hasOne(Room::class);
+        return $this->hasMany(Room::class);
     }
 
 }

@@ -8,7 +8,10 @@ class DashboardController extends Controller
 {
     public function read()
     {
-        return view('gedung.Dashboard', [
+        // return view('gedung.dashboard', [
+        //     'title' => 'Dashboard'
+        // ]);
+        return view('dashboard.calendar', [
             'title' => 'Dashboard'
         ]);
     }

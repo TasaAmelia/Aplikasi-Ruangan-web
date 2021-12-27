@@ -1,10 +1,10 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">P3TI</a>
+            <a href="index.html">PinjamRuang</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">p3ti</a>
+            <a href="index.html"></a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>

@@ -12,6 +12,7 @@
       </div>
     </section>
     <div class="section-body">
+        {{-- <h2 class="section-title">List Gedung</h2> --}}
 
       @if (session('statusDelete'))
         <div class="alert alert-danger alert-dismissible show fade">
@@ -81,7 +82,7 @@
                           </table>
                       </div>
                   </div>
-                  <div class="d-flex justify-content-end"></div>
+                  <div class="d-flex justify-content-center">{{ $buildings->links() }} </div>
               </div>
           </div>
       </div>
@@ -89,6 +90,5 @@
     </div>
 
 </section>
-
 
 @endsection

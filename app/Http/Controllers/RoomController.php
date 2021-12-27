@@ -18,8 +18,8 @@ class RoomController extends Controller
     {
         return view('ruangan.ruangan_list', [
             'title' => 'Data Ruangan',
-            'rooms' => Room::paginate(10)->withQueryString()
-            ])->with('i', ($request->input('page', 1) - 1) * 10);
+            'rooms' => Room::with(['building','roomtype'])->paginate(5)
+        ]);
     }
 
     /**
@@ -48,8 +48,8 @@ class RoomController extends Controller
     {
         $room = new Room();
         $room->roomname = $request->input('roomname');
-        $room->roomtypename = $request->input('roomtypename');
-        $room->buildingname = $request->input('buildingname');
+        $room->roomtype_id = $request->input('roomtype_id');
+        $room->building_id = $request->input('building_id');
         $room->roomdescription = $request->input('roomdescription');
         $room->save();
         return redirect('/ruanganList')->with('statusAdd', 'Added data sucessfully !');

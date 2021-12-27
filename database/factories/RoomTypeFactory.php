@@ -14,7 +14,8 @@ class RoomTypeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'roomtypename' => $this->faker->stateAbbr(),
+            'roomtypedescription' => $this->faker->state(),
         ];
     }
 }

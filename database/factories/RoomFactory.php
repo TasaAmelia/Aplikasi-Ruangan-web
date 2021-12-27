@@ -14,7 +14,10 @@ class RoomFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'roomtype_id' => mt_rand(1,5),
+            'building_id' => mt_rand(1,5),
+            'roomname' => $this->faker->word(),
+            'roomdescription' => $this->faker->word(),
         ];
     }
 }

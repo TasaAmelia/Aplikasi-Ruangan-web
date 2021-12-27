@@ -14,7 +14,8 @@ class BuildingFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'buildingname' => $this->faker->city(),
+            'buildingdescription' => $this->faker->companySuffix(),
         ];
     }
 }

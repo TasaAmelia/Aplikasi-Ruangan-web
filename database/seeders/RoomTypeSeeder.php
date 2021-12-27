@@ -13,6 +13,6 @@ class RoomTypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\RoomType::factory(5)->create();
     }
 }

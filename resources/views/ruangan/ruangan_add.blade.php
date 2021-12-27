@@ -28,30 +28,30 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="roomtypename">Jenis Ruangan</label>
-                            <select class="form-control @error('roomtypename') is-invalid @enderror" 
-                            name="roomtypename" id="roomtypename" value="{{ old('roomtypename') }}"
+                            <label for="roomtype_id">Jenis Ruangan</label>
+                            <select class="form-control @error('roomtype_id') is-invalid @enderror" 
+                            name="roomtype_id" value="{{ old('roomtype_id') }}"
                             required autofocus>
                             @foreach($roomtypes as $roomtype)
-                                <option>{{ $roomtype->roomtypename }}</option>
+                                <option value="{{ $roomtype->id }}">{{ $roomtype->roomtypename }}</option>
                                 @endforeach
                               </select>
-                              @error('roomtypename')
+                              @error('roomtype_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="buildingname">Gedung</label>
-                            <select class="form-control @error('buildingname') is-invalid @enderror" 
-                            name="buildingname" id="buildingname" value="{{ old('buildingname') }}"
+                            <label for="building_id">Gedung</label>
+                            <select class="form-control @error('building_id') is-invalid @enderror" 
+                            name="building_id" value="{{ old('building_id') }}"
                             required autofocus>
                             @foreach($buildings as $building)
-                                <option>{{ $building->buildingname }}</option>
+                                <option value="{{ $building->id }}">{{ $building->buildingname }}</option>
                                 @endforeach
                               </select>
-                              @error('buildingname')
+                              @error('building_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

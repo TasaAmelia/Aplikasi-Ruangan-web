@@ -80,7 +80,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end"></div>
+                    <div class="d-flex justify-content-center">{{ $roomtypes->links() }}</div>
                 </div>
             </div>
         </div>
