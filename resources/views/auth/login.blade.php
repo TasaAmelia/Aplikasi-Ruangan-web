@@ -8,9 +8,17 @@
     </div>
 
     @if (session('LoginError'))
-    <h6 class="alert alert-danger">
+    <div class="alert alert-danger alert-dismissible show fade">
+        <div class="alert-body">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>x</span>
+        </button>
+        <strong>{{ session('LoginError') }}</strong>
+        </div>
+    </div>
+    {{-- <h6 class="alert alert-danger">
         {{ session('LoginError') }}
-    </h6>
+    </h6> --}}
     @endif
 
     <div class="card-body">

@@ -52,7 +52,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/jenisruanganAddForm" class="btn btn-primary">
+                        <a href="/roomtype/create" class="btn btn-primary">
                             Tambah Jenis Ruangan
                         </a>
                     </div>
@@ -72,7 +72,7 @@
                                       <td>{{ $roomtype['roomtypedescription'] }}</td>
                                       <td><a href="{{ "/jenisruanganUpdateForm/" .$roomtype['id'] }}" class="btn btn-warning"><i
                                                   class="fas fa-pencil-alt"></i></a>
-                                          <a href={{ "/jenisruanganDelete/" .$roomtype['id'] }} class="btn btn-danger"
+                                          <a href="/roomtype/{{ $roomtype->id }}" class="btn btn-danger"
                                               onclick="return confirm('Are you sure want to delete ?')"><i
                                                   class="fas fa-trash"></i></a></td>
                                   </tr>

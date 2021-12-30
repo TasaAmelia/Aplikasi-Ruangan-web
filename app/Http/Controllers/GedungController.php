@@ -14,23 +14,23 @@ class GedungController extends Controller
             ])->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
-    public function add() {
+    public function create() {
         return view('gedung.gedung_add', [
             'title'     => 'Tambah Gedung',
             'mainTitle' => 'Gedung'
         ]);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $building = new Building();
         $building->buildingname = $request->input('buildingname');
         $building->buildingdescription = $request->input('buildingdescription');
         $building->save();
-        return redirect('/gedungList')->with('statusAdd', 'Added data sucessfully !');
+        return redirect('/gedung')->with('statusAdd', 'Added data sucessfully !');
     }
 
-    public function showData($id)
+    public function edit($id)
     {
         return view('gedung.gedung_update', [
             'title' => 'Update Gedung',

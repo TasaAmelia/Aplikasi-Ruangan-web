@@ -46,7 +46,7 @@ class RoomTypeController extends Controller
         $roomtype->roomtypename = $request->input('roomtypename');
         $roomtype->roomtypedescription = $request->input('roomtypedescription');
         $roomtype->save();
-        return redirect('/jenisruanganList')->with('statusAdd', 'Added data sucessfully !');
+        return redirect('/roomtype')->with('statusAdd', 'Added data sucessfully !');
     }
 
     /**
@@ -101,7 +101,7 @@ class RoomTypeController extends Controller
     {
         $data = RoomType::find($id);
         $data->each->delete();
-        return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        return redirect('/roomtype')->with('statusDelete', 'Delete data sucessfully !');
     
     }
 }

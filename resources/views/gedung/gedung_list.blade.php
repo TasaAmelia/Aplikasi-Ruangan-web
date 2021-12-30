@@ -54,7 +54,7 @@
           <div class="col-12">
               <div class="card">
                   <div class="card-header">
-                      <a href="/gedungAddForm" class="btn btn-primary">
+                      <a href="/gedung/create" class="btn btn-primary">
                           Tambah Gedung
                       </a>
                   </div>
@@ -70,11 +70,11 @@
                               @foreach ($buildings as $building )
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{ $building['buildingname'] }}</td>
-                                    <td>{{ $building['buildingdescription'] }}</td>
+                                    <td>{{ $building->buildingname }}</td>
+                                    <td>{{ $building->buildingdescription }}</td>
                                     <td><a href="{{ "/gedungUpdateForm/" .$building['id'] }}" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <a href={{ "/gedungDelete/" .$building['id'] }} class="btn btn-danger"
+                                        <a href= "/gedung/{{ $building->id }}}" class="btn btn-danger"
                                             onclick="return confirm('Are you sure want to delete ?')"><i
                                                 class="fas fa-trash"></i></a></td>
                                 </tr>

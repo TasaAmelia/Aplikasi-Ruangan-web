@@ -11,7 +11,7 @@
     <div class="section-body">
         <h2 class="section-title">{{ $title }}</h2>
 
-        <form action="/gedungAdd" method="POST">
+        <form action="/gedung" method="POST">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -43,6 +43,7 @@
             </div>
             <div class="card-footer">
                 <button class="btn btn-primary" type="submit">Submit</button>
+                <a href="/gedung" class="btn btn-danger">Cancel</a>
             </div>
         </form>
 

@@ -14,13 +14,13 @@
                 </a>
               </li>
             <li class="menu-header">Master Data</li>
-            <li class="{{ ($title === "Data Gedung") ? 'active' : '' }}">
-                <a class="nav-link" href="/gedungList"><i class="fas fa-th-large"></i>
+            <li class="{{ Request::is('gedung*') ? 'active': '' }}">
+                <a class="nav-link" href="/gedung"><i class="fas fa-th-large"></i>
                     <span>Data Gedung</span>
                 </a>
             </li>
-            <li class="{{ ($title === "Data Jenis Ruangan") ? 'active' : '' }}">
-                <a class="nav-link" href="/jenisruanganList"><i class="fas fa-th-large"></i>
+            <li class="{{ Request::is('roomtype*') ? 'active': '' }}">
+                <a class="nav-link" href="/roomtype"><i class="fas fa-th-large"></i>
                     <span>Data Jenis Ruangan</span>
                 </a>
             </li>
@@ -36,9 +36,19 @@
                 </a>
             </li>
             <li class="menu-header">Peminjaman</li>
-            <li class="{{ ($title === "Peminjaman") ? 'active' : '' }}">
-                <a href="/peminjamanList" class="nav-link"><i class="fas fa-pencil-ruler"></i>
+            <li class="{{ Request::is('rental*') ? 'active': '' }}">
+                <a href="/rental" class="nav-link"><i class="fas fa-pencil-ruler"></i>
                     <span>Peminjaman</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('rents/create') ? 'active': '' }}">
+                <a href="/rents/create" class="nav-link"><i class="fas fa-pencil-ruler"></i>
+                    <span>Peminjaman</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('rents') ? 'active': '' }}">
+                <a href="/rents" class="nav-link"><i class="fas fa-pencil-ruler"></i>
+                    <span>Riwayat Peminjaman</span>
                 </a>
             </li>
         </ul>

@@ -11,7 +11,7 @@
     <div class="section-body">
         <h2 class="section-title">{{ $title }}</h2>
 
-        <form action="/jenisruanganAdd" method="POST">
+        <form action="/roomtype" method="POST">
             @csrf
             <div class="card">
                 <div class="card-body">

@@ -11,4 +11,16 @@ class Rental extends Model
     protected $fillable = [
         'title', 'start', 'end'
     ];
+
+    public function room(){
+        return $this->belongsTo(Room::class);
+    }
+
+    public function building(){
+        return $this->belongsTo(Building::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

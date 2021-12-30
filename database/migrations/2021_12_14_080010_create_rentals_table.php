@@ -15,9 +15,13 @@ class CreateRentalsTable extends Migration
     {
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->foreignId('building_id');
+            $table->foreignId('room_id');
+            $table->foreignId('user_id');
+            $table->string('jenis_pinjam');
+            $table->dateTime('tanggal_awal');
+            $table->dateTime('tanggal_akhir');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

@@ -35,5 +35,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function rental(){
+        return $this->hasMany(Rental::class);
+    }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rental;
+use App\Models\Building;
 use Illuminate\Http\Request;
 
 class RentalController extends Controller
@@ -12,12 +13,16 @@ class RentalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return view('peminjaman.peminjaman_list', [
-            'title' => 'Peminjaman',
-            'rents' => Rental::paginate(10)->withQueryString()
-            ])->with('i', ($request->input('page', 1) - 1) * 10);
+        // return view('history.list', [
+        //     'title'     => 'Riwayat Peminjaman',
+        //     'mainTitle' => 'Peminjaman'
+        // ]);
+        return view('history.list', [
+            'title' => 'Riwayat Peminjaman',
+            'rents' => Rental::with(['building', 'room'])->where('user_id', auth()->user()->id)->paginate(5)
+        ]);
     }
 
     /**
@@ -29,7 +34,8 @@ class RentalController extends Controller
     {
         return view('peminjaman.peminjaman_add', [
             'title'     => 'Pinjam Ruangan',
-            'mainTitle' => 'Peminjaman'
+            'mainTitle' => 'Peminjaman',
+            'buildings' => Building::all(),
         ]);
     }
 
