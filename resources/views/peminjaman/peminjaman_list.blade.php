@@ -63,8 +63,8 @@
                                     <th>No</th>
                                     <th>Nama Gedung</th>
                                     <th>Nama Ruangan</th>
+                                    <th>Nama Peminjam</th>
                                     <th>Jenis Pinjaman</th>
-                                    {{-- <th>Nama Peminjam</th> --}}
                                     <th>Tgl awal pinjam</th>
                                     <th>Tgl akhir pinjam</th>
                                     <th>Ket Peminjaman</th>
@@ -75,6 +75,7 @@
                                     <td>{{ $rents->firstItem() + $loop->index }}</td>
                                     <td>{{ $rent->building->buildingname }}</td>
                                     <td>{{ $rent->room->roomname }}</td>
+                                    <td>{{ $rent->user->username }}</td>
                                     <td>{{ $rent->jenis_pinjam }}</td>
                                     <td>{{ $rent->tanggal_awal }}</td>
                                     <td>{{ $rent->tanggal_akhir }}</td>
