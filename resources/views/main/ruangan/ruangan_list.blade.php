@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $room->gedung->nama_gedung }}</td>
-                                    <td>{{ $room->jenisRuangan->nama_jenis_ruangan }}</td>
+                                    <td>{{ $room->jenis->nama_jenis_ruangan }}</td>
                                     <td>{{ $room['nama_ruangan'] }}</td>
                                     <td>{{ $room['ket_ruangan'] }}</td>
                                     <td><a href="{{ "/ruanganUpdate/" .$room['id'] }}" class="btn btn-warning"><i

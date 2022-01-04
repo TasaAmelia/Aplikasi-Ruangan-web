@@ -45,13 +45,13 @@ class RuanganController extends Controller
      */
     public function store(Request $request)
     {
-        // $room = new Ruangan();
-        // $room->gedung_id        = $request->input('buildingname');
-        // $room->jenis_ruangan_id = $request->input('roomtypename');
-        // $room->nama_ruangan     = $request->input('roomname');
-        // $room->ket_ruangan      = $request->input('roomdescription');
-        // $room->save();
-        // return redirect('/ruanganList')->with('statusAdd', 'Added data ruangan sucessfully !');
+        $room = new Ruangan();
+        $room->gedung_id        = $request->input('building_id');
+        $room->jenis_ruangan_id = $request->input('roomtype_id');
+        $room->nama_ruangan     = $request->input('roomname');
+        $room->ket_ruangan      = $request->input('roomdescription');
+        $room->save();
+        return redirect('/ruanganList')->with('statusAdd', 'Added data ruangan sucessfully !');
 
         return $request;
     }
@@ -77,7 +77,9 @@ class RuanganController extends Controller
     {
         return view('main.ruangan.ruangan_update', [
             'title'     => 'Data Ruangan',
-            'data'      => Ruangan::find($id)
+            'data'      => Ruangan::find($id),
+            'gedung'      => Gedung::all(),
+            'jenis'      => JenisRuangan::all()
         ]);
     }
 
@@ -91,6 +93,8 @@ class RuanganController extends Controller
     public function update(Request $request)
     {
         $data               = Ruangan::find($request -> id);
+        $data->nama_gedung = $request->buildingname;
+        $data->nama_jenis_ruangan = $request->roomtypename;
         $data->nama_ruangan = $request->roomname;
         $data->ket_ruangan  = $request->roomdescription;
         $data->save();
