@@ -75,9 +75,10 @@
                                     <td>{{ $user['fullname'] }}</td>
                                     <td><a href="{{ "/userUpdate/" .$user['id'] }}" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <a href={{ "/userDelete/" .$user['id'] }} class="btn btn-danger"
-                                            onclick="return confirm('Are you sure want to delete ?')"><i
+                                        <a href=# class="btn btn-danger delete" data-id="{{ $user->id }}"
+                                            ><i
                                                 class="fas fa-trash"></i></a></td>
+                                                {{-- onclick="return confirm('Are you sure want to delete ?')" --}}
                                 </tr>
                                 @endforeach
                             </table>
@@ -89,6 +90,31 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+
+    <script>
+        $('.delete').click( function(){
+            var dataID = $(this).attr('data-id');
+            swal({
+                title: "Are you sure?",
+                text: "Delete data id "+dataID+" ",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/userDelete/"+dataID+""
+                    swal("Data berhasil dihapus", {
+                    icon: "success",
+                    });
+                } else {
+                    
+                }
+            });
+        })
+    </script>
 </section>
 
 @endsection

@@ -35,7 +35,9 @@
                                 <option value="Admin" @if (old('usertype')=="Admin" ) {{ 'selected' }} @endif>Admin
                                 </option>
                                 <option value="SuperAdmin" @if (old('usertype')=="SuperAdmin" ) {{ 'selected' }} @endif>
-                                    SuperAdmin</option>
+                                    Super Admin</option>
+                                <option value="User" @if (old('usertype')=="SuperAdmin" ) {{ 'selected' }} @endif>
+                                    User</option>
                             </select>
                             @error('usertype')
                             <div class="invalid-feedback">

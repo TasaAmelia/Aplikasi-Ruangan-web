@@ -74,6 +74,7 @@ class DashboardRentalController extends Controller
         $rent->jenis_pinjam = $request->input('jenis_pinjaman');
         $rent->tanggal_awal = $request->input('tgl_awal_pinjam');
         $rent->tanggal_akhir = $request->input('tgl_akhir_pinjam');
+        $rent->status = 'Pending';
         $rent->keterangan = $request->input('description');
         $rent->save();
         return redirect('/');
@@ -97,9 +98,14 @@ class DashboardRentalController extends Controller
      * @param  \App\Models\Rental  $rental
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rental $rental)
+    public function edit(Rental $rental, Request $request)
     {
-        //
+        // dd($request->input('status'));
+        $data = Rental::find($rental -> id);
+        // dd($data);
+        $data->keterangan = $request->input('message');
+        $data->save();
+        return redirect('/rental');
     }
 
     /**
@@ -111,7 +117,18 @@ class DashboardRentalController extends Controller
      */
     public function update(Request $request, Rental $rental)
     {
-        //
+        // dd($request->input('message'));
+        // dd($request->input('status'));
+        $data = Rental::find($rental -> id);
+        // // dd($data);
+        $data->status = $request->input('status');
+        $data->keterangan = $request->input('message');
+        $data->save();
+        return response()->json(
+            [
+              'success' => true,
+            ]);
+        // return redirect('/rental')->with('success', true);
     }
 
     /**

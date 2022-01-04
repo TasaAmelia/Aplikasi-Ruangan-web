@@ -21,6 +21,7 @@ class CreateRentalsTable extends Migration
             $table->string('jenis_pinjam');
             $table->dateTime('tanggal_awal');
             $table->dateTime('tanggal_akhir');
+            $table->string('status');
             $table->string('keterangan');
             $table->timestamps();
         });

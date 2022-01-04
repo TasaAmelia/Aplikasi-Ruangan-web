@@ -72,9 +72,9 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $building->buildingname }}</td>
                                     <td>{{ $building->buildingdescription }}</td>
-                                    <td><a href="{{ "/gedungUpdateForm/" .$building['id'] }}" class="btn btn-warning"><i
+                                    <td><a href="/gedung/{{ $building->id }}/edit" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <a href= "/gedung/{{ $building->id }}}" class="btn btn-danger"
+                                        <a href= "/gedung/{{ $building->id }}" class="btn btn-danger"
                                             onclick="return confirm('Are you sure want to delete ?')"><i
                                                 class="fas fa-trash"></i></a></td>
                                 </tr>
