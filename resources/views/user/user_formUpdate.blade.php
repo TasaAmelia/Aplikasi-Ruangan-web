@@ -13,7 +13,8 @@
     <div class="section-body">
         <h2 class="section-title">{{ $title }}</h2>
 
-        <form action="/userUpdate" method="POST">
+        <form action="/user/{{ $data->id }}" method="POST">
+            @method('put')
             @csrf
             <div class="card">
                 <div class="card-body">

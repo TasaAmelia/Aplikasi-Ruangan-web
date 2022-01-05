@@ -56,18 +56,18 @@ class DashboardRentalController extends Controller
      */
     public function store(Request $request)
     {
-        $rent = new Rental();
         // $data = $request->validate([
-        //     'gedung_id' => 'required',
-        //     'room_id' => 'required',
-        //     'jenis_pinjaman' => 'required',
-        //     'tgl_awal_pinjam' => 'required',
-        //     'tgl_akhir_pinjam' => 'required',
-        //     'description' => 'required'
-        // ]);
-        // $data['user_id'] = auth()->user()->id;
-        // Rental::create($data);
-        
+            //     'gedung_id' => 'required',
+            //     'room_id' => 'required',
+            //     'jenis_pinjaman' => 'required',
+            //     'tgl_awal_pinjam' => 'required',
+            //     'tgl_akhir_pinjam' => 'required',
+            //     'description' => 'required'
+            // ]);
+            // $data['user_id'] = auth()->user()->id;
+            // Rental::create($data);
+            
+        $rent = new Rental();
         $rent->building_id = $request->input('gedung_id');
         $rent->room_id = $request->input('room_id');
         $rent->user_id = auth()->user()->id;
@@ -77,7 +77,7 @@ class DashboardRentalController extends Controller
         $rent->status = 'Pending';
         $rent->keterangan = $request->input('description');
         $rent->save();
-        return redirect('/');
+        return redirect('/rental');
 
     }
 
@@ -127,6 +127,7 @@ class DashboardRentalController extends Controller
         return response()->json(
             [
               'success' => true,
+              'status' => 200
             ]);
         // return redirect('/rental')->with('success', true);
     }

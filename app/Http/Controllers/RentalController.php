@@ -32,7 +32,7 @@ class RentalController extends Controller
      */
     public function create()
     {
-        return view('peminjaman.peminjaman_add', [
+        return view('userRental.add', [
             'title'     => 'Pinjam Ruangan',
             'mainTitle' => 'Peminjaman',
             'buildings' => Building::all(),
@@ -47,7 +47,17 @@ class RentalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rent = new Rental();
+        $rent->building_id = $request->input('gedung_id');
+        $rent->room_id = $request->input('room_id');
+        $rent->user_id = auth()->user()->id;
+        $rent->jenis_pinjam = $request->input('jenis_pinjaman');
+        $rent->tanggal_awal = $request->input('tgl_awal_pinjam');
+        $rent->tanggal_akhir = $request->input('tgl_akhir_pinjam');
+        $rent->status = 'Pending';
+        $rent->keterangan = $request->input('description');
+        $rent->save();
+        return redirect('/');
     }
 
     /**

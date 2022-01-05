@@ -12,7 +12,7 @@
     <div class="section-body">
         <h2 class="section-title">{{ $title }}</h2>
 
-        <form action="/userAdd" method="POST">
+        <form action="/user" method="POST">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -36,7 +36,7 @@
                                 </option>
                                 <option value="SuperAdmin" @if (old('usertype')=="SuperAdmin" ) {{ 'selected' }} @endif>
                                     Super Admin</option>
-                                <option value="User" @if (old('usertype')=="SuperAdmin" ) {{ 'selected' }} @endif>
+                                <option value="User" @if (old('usertype')=="User" ) {{ 'selected' }} @endif>
                                     User</option>
                             </select>
                             @error('usertype')

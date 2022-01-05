@@ -11,7 +11,8 @@
     <div class="section-body">
         <h2 class="section-title">{{ $title }}</h2>
 
-        <form action="/gedungUpdate" method="POST">
+        <form action="/gedung/{{ $data->id }}" method="POST">
+            @method('put')
             @csrf
             <div class="card">
                 <div class="card-body">

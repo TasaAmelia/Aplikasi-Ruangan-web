@@ -122,11 +122,15 @@
                                             {{-- </form> --}}
                                             @if ($rent->status == 'Accept')
                                             <a href=# class="btn btn-secondary approve disabled" data-id="{{ $rent->id }}"><i class="fas fa-check"></i></a>
+                                            <a href=# class="btn btn-danger reject disabled" data-id="{{ $rent->id }}"><i class="fas fa-times"></i></a>
+                                            @elseif($rent->status == 'Reject')
+                                            <a href=# class="btn btn-secondary approve disabled" data-id="{{ $rent->id }}"><i class="fas fa-check"></i></a>
+                                            <a href=# class="btn btn-danger reject disabled" data-id="{{ $rent->id }}"><i class="fas fa-times"></i></a>
                                             @else
                                             <a href=# class="btn btn-success approve" data-id="{{ $rent->id }}"><i class="fas fa-check"></i></a>
+                                            <a href=# class="btn btn-danger reject" data-id="{{ $rent->id }}"><i class="fas fa-times"></i></a>
                                             @endif
-                                            <a href=# class="btn btn-danger reject" data-id="{{ $rent->id }}"
-                                                ><i class="fas fa-times"></i></a></td>
+                                            </td>
                                                 {{-- <a href={{ "/ruanganDelete/" .$rent['id'] }} class="btn btn-danger trigger--fire-modal-7"
                                             onclick="return confirm('Are you sure want to delete ?')"><i
                                             class="fas fa-trash"></i></a> --}}

@@ -88,7 +88,7 @@ class RoomTypeController extends Controller
         $data->roomtypename = $request->roomtypename;
         $data->roomtypedescription = $request->roomtypedescription;
         $data->save();
-        return redirect('/jenisruanganList')->with('statusUpdate', 'Update data sucessfully');
+        return redirect('/roomtype')->with('statusUpdate', 'Update data sucessfully');
     }
 
     /**
@@ -97,11 +97,14 @@ class RoomTypeController extends Controller
      * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomType $id)
+    public function destroy($id)
     {
         $data = RoomType::find($id);
-        $data->each->delete();
-        return redirect('/roomtype')->with('statusDelete', 'Delete data sucessfully !');
+        $data->delete();
+        // return redirect('/roomtype')->with('statusDelete', 'Delete data sucessfully !');
+        return response()->json([
+            'success' => true
+        ]);
     
     }
 }

@@ -46,15 +46,19 @@ class GedungController extends Controller
         $data->buildingname = $request->buildingname;
         $data->buildingdescription = $request->buildingdescription;
         $data->save();
-        return redirect('/gedungList')->with('statusUpdate', 'Update data sucessfully');
+        return redirect('/gedung')->with('statusUpdate', 'Update data sucessfully');
     }
 
 
-    public function delete($id)
+    public function destroy($id)
     {
         $data = Building::find($id);
         $data->delete();
-        return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        // return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        return response()->json(
+            [
+              'success' => true
+            ]);
     }
 
 

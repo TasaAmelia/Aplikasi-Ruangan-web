@@ -52,7 +52,7 @@ class RoomController extends Controller
         $room->building_id = $request->input('building_id');
         $room->roomdescription = $request->input('roomdescription');
         $room->save();
-        return redirect('/ruanganList')->with('statusAdd', 'Added data sucessfully !');
+        return redirect('/ruangan')->with('statusAdd', 'Added data sucessfully !');
     }
 
     /**
@@ -94,11 +94,11 @@ class RoomController extends Controller
     {
         $data = Room::find($request -> id);
         $data->roomname = $request->roomname;
+        $data->roomtype_id = $request->roomtype_id;
+        $data->building_id = $request->building_id;
         $data->roomdescription = $request->roomdescription;
-        $data->roomtypename = $request->roomtypename;
-        $data->buildingname = $request->buildingname;
         $data->save();
-        return redirect('/ruanganList')->with('statusUpdate', 'Update data sucessfully');
+        return redirect('/ruangan')->with('statusUpdate', 'Update data sucessfully');
     }
 
     /**
@@ -107,10 +107,13 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Room $id)
+    public function destroy($id)
     {
         $data = Room::find($id);
-        $data->each->delete();
-        return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        $data->delete();
+        // return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

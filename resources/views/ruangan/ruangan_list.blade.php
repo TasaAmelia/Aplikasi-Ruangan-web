@@ -52,11 +52,13 @@
       <div class="row">
           <div class="col-12">
               <div class="card">
+                  @can('superadmin')
                   <div class="card-header">
-                      <a href="/ruanganAddFrom" class="btn btn-primary">
-                          Tambah Ruangan
-                      </a>
-                  </div>
+                      <a href="/ruangan/create" class="btn btn-primary">
+                        Tambah Ruangan
+                    </a>
+                </div>
+                @endcan
                   <div class="card-body p-0">
                       <div class="table-responsive">
                           <table class="table table-striped table-md">
@@ -66,20 +68,23 @@
                                   <th>Gedung</th>
                                   <th>Jenis Ruangan</th>
                                   <th>Keterangan</th>
+                                  @can('superadmin')
                                   <th>Aksi</th>
+                                  @endcan
                               </tr>
                               @foreach ($rooms as $room )
                                 <tr>
                                     <td>{{ $rooms->firstItem() + $loop->index }}</td>
-                                    <td>{{ $room['roomname'] }}</td>
+                                    <td>{{ $room->roomname }}</td>
                                     <td>{{ $room->building->buildingname }}</td>
                                     <td>{{ $room->roomtype->roomtypename }}</td>
                                     <td>{{ $room['roomdescription'] }}</td>
-                                    <td><a href="{{ "/ruanganUpdateForm/" .$room['id'] }}" class="btn btn-warning"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a href={{ "/ruanganDelete/" .$room['id'] }} class="btn btn-danger trigger--fire-modal-7"
-                                            onclick="return confirm('Are you sure want to delete ?')"><i
-                                                class="fas fa-trash"></i></a></td>
+                                    <td>
+                                        @can('superadmin')
+                                        <a href="/ruangan/{{ $room->id }}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href=# class="btn btn-danger ruangan-delete" data-id="{{ $room->id }}"><i class="fas fa-trash"></i></a>
+                                        @endcan
+                                    </td>
                                 </tr>
                                 @endforeach
                           </table>
@@ -90,5 +95,46 @@
           </div>
       </div>
   </div>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+        
+    <script>
+        $('.ruangan-delete').click( function(){
+        var dataID = $(this).attr('data-id');
+        Swal.fire({
+            title: 'Konfirmasi Penghapusan',
+            text: 'Yakin akan menghapus?',
+            showCancelButton: true,
+            cancelButtonText: 'Tidak',
+            confirmButtonText: 'Ya',
+            icon: 'warning',
+            })
+            .then((result) => {
+                if(result.isConfirmed){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/ruangan/"+dataID+"",
+                        success: function(response){
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Berhasil dihapus',
+                                showConfirmButton: false,
+                                timer: 1000
+                            }).then(function(){
+                                location.reload()
+                            },2000)
+                        }
+                    })
+                }
+            })
+        })
+
+    </script>
 
 @endsection
