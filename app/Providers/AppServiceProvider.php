@@ -29,8 +29,20 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        Gate::define('superAdmin', function(User $user){
-            return $user->username === 'Super Admin';
+        Gate::define('superadmin', function(User $user){
+            return $user->usertype === 'SuperAdmin';
+        });
+
+        Gate::define('admin', function(User $user){
+            return $user->usertype === 'Admin';
+        });
+
+        Gate::define('mix', function(User $user){
+            return $user->usertype === 'Admin' || $user->usertype === 'SuperAdmin';
+        });
+
+        Gate::define('user', function(User $user){
+            return $user->usertype === 'User';
         });
 
         Schema::defaultStringLength(191);

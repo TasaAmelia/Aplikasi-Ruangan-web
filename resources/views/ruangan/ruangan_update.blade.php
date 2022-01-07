@@ -11,7 +11,8 @@
     <div class="section-body">
         <h2 class="section-title">{{ $title }}</h2>
 
-        <form action="/ruanganUpdate" method="POST">
+        <form action="/ruangan/{{ $data->id }}" method="POST">
+            @method('put')
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -29,38 +30,30 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="roomtypename">Jenis Ruangan</label>
-                            <select class="form-control @error('roomtypename') is-invalid @enderror" 
-                            name="roomtypename" id="roomtypename" value="{{ old('roomtypename') }}"
+                            <label for="roomtype_id">Jenis Ruangan</label>
+                            <select class="form-control @error('roomtype_id') is-invalid @enderror" 
+                            name="roomtype_id" id="roomtype_id" value="{{ old('roomtype_id') }}"
                             required>
                             @foreach($roomtypes as $roomtype)
-                            @if (old('roomtypename') === $data->roomtypename)
-                                <option value="{{ $data->roomtypename }}" selected>{{ $roomtype->roomtypename }}</option>
-                                @else
-                                <option value="{{ $roomtype->roomtypename }}">{{ $roomtype->roomtypename }}</option>
-                                @endif
+                                <option value="{{ $roomtype->id }}">{{ $roomtype->roomtypename }}</option>
                                 @endforeach
                               </select>
-                              @error('roomtypename')
+                              @error('roomtype_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="buildingname">Gedung</label>
-                            <select class="form-control @error('buildingname') is-invalid @enderror" 
-                            name="buildingname" id="buildingname" value="{{ old('buildingname') }}"
+                            <label for="building_id">Gedung</label>
+                            <select class="form-control @error('building_id') is-invalid @enderror" 
+                            name="building_id" id="building_id" value="{{ old('building_id') }}"
                             required autofocus>
                             @foreach($buildings as $building)
-                            @if (old('buildingname') === $data->buildingname)
-                                <option value="{{ $data->buildingname }}" selected>{{ $data->buildingname }}</option>
-                                @else
-                                <option value="{{ $building->buildingname }}">{{ $building->buildingname }}</option>
-                                @endif
+                                <option value="{{ $building->id }}">{{ $building->buildingname }}</option>
                                 @endforeach
                               </select>
-                              @error('buildingname')
+                              @error('building_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

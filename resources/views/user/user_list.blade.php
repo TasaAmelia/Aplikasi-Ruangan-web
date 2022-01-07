@@ -53,7 +53,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/userAdd" class="btn btn-primary">
+                        <a href="/user/create" class="btn btn-primary">
                             Add User
                         </a>
                     </div>
@@ -73,11 +73,12 @@
                                     <td>{{ $user['username'] }}</td>
                                     <td>{{ $user['usertype'] }}</td>
                                     <td>{{ $user['fullname'] }}</td>
-                                    <td><a href="{{ "/userUpdate/" .$user['id'] }}" class="btn btn-warning"><i
+                                    <td><a href="/user/{{ $user->id }}/edit" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <a href={{ "/userDelete/" .$user['id'] }} class="btn btn-danger"
-                                            onclick="return confirm('Are you sure want to delete ?')"><i
+                                        <a href=# class="btn btn-danger user-delete" data-id="{{ $user->id }}"
+                                            ><i
                                                 class="fas fa-trash"></i></a></td>
+                                                {{-- onclick="return confirm('Are you sure want to delete ?')" --}}
                                 </tr>
                                 @endforeach
                             </table>
@@ -88,7 +89,46 @@
             </div>
         </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 
+    <script>
+        $('.user-delete').click( function(){
+        var dataID = $(this).attr('data-id');
+        Swal.fire({
+            title: 'Konfirmasi Penghapusan',
+            text: 'Yakin akan menghapus?',
+            showCancelButton: true,
+            cancelButtonText: 'Tidak',
+            confirmButtonText: 'Ya',
+            icon: 'warning',
+            })
+            .then((result) => {
+                if(result.isConfirmed){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/user/"+dataID+"",
+                        success: function(response){
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Berhasil dihapus',
+                                showConfirmButton: false,
+                                timer: 1000
+                            }).then(function(){
+                                location.reload()
+                            },2000)
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </section>
 
 @endsection

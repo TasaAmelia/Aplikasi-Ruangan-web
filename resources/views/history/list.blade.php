@@ -68,7 +68,6 @@
                                     <th>Tgl awal pinjam</th>
                                     <th>Tgl akhir pinjam</th>
                                     <th>Ket Peminjaman</th>
-                                    <th>Action</th>
                                 </tr>
                                 @foreach ($rents as $rent)
                                 <tr>
@@ -79,9 +78,6 @@
                                     <td>{{ $rent->tanggal_awal }}</td>
                                     <td>{{ $rent->tanggal_akhir }}</td>
                                     <td>{{ $rent->keterangan }}</td>
-                                    <td><a class="btn btn-success statButton" id="btnCheck"><i
-                                        class="fas fa-check"></i></a>
-                                    <p id="status"></p>
                                 </tr>
                                 @endforeach
                             </table>
@@ -91,18 +87,6 @@
             </div>
         </div>
     </div>
-    <script>
-        let btnCheck = document.querySelector('#btnCheck');
-        let statusOk = document.querySelector('#status');
-
-        btnCheck.addEventListener('click', () =>{
-            setTimeout(() => {
-                btnCheck.style.display = "none";
-                statusOk.innerText = 'Accepted'
-            }, 50);
-        })
-
-    </script>
 
 </section>
 

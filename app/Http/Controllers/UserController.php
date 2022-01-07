@@ -10,7 +10,15 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function add()
+    public function index(Request $request)
+    {
+        return view('user.user_list', [
+            'title'     => 'User',
+            'users'     => User::paginate(10)->withQueryString()
+        ])->with('i', ($request->input('page', 1) - 1) * 10);
+    }
+
+    public function create()
     {
         return view('user.user_formAdd', [
             'title'     => 'Add User',
@@ -20,7 +28,7 @@ class UserController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $user = new User();
         $user->username = $request->input('username');
@@ -28,20 +36,10 @@ class UserController extends Controller
         $user->usertype = $request->input('usertype');
         $user->fullname = $request->input('fullname');
         $user->save();
-        return redirect('/userList')->with('statusAdd', 'Added data sucessfully !');
+        return redirect('/user')->with('statusAdd', 'Added data sucessfully !');
     }
 
-
-    public function read(Request $request)
-    {
-        return view('user.user_list', [
-            'title'     => 'User',
-            'users'     => User::paginate(10)->withQueryString()
-        ])->with('i', ($request->input('page', 1) - 1) * 10);
-    }
-
-
-    public function showData($id)
+    public function edit($id)
     {
         return view('user.user_formUpdate', [
             'title' => 'Update User',
@@ -58,15 +56,18 @@ class UserController extends Controller
         $data->fullname = $request->fullname;
         $data->usertype = $request->usertype;
         $data->save();
-        return redirect('/userList')->with('statusUpdate', 'Update data sucessfully');
+        return redirect('/user')->with('statusUpdate', 'Update data sucessfully');
     }
 
 
-    public function delete($id)
+    public function destroy($id)
     {
         $data = User::find($id);
         $data->delete();
-        return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        // return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        return response()->json([
+            'success' => true
+        ]);
     }
 
 }
