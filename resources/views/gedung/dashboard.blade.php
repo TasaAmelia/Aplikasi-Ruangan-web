@@ -1,7 +1,6 @@
 @extends('layouts.layouts_main')
 
 @section("container")
-
     <section class="section">
       <div class="section-header">
         <h1>Dashboard</h1>
@@ -21,7 +20,7 @@
                 <h4>Total User</h4>
               </div>
               <div class="card-body">
-                10
+                {{ $user }}
               </div>
             </div>
           </div>
@@ -33,10 +32,10 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>News</h4>
+                <h4>Total Gedung</h4>
               </div>
               <div class="card-body">
-                42
+                {{ $gedung }}
               </div>
             </div>
           </div>
@@ -48,10 +47,10 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Reports</h4>
+                <h4>Total Ruangan</h4>
               </div>
               <div class="card-body">
-                1,201
+                {{ $ruangan }}
               </div>
             </div>
           </div>
@@ -59,19 +58,61 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
           <div class="card card-statistic-1">
             <div class="card-icon bg-success">
-              <i class="fas fa-circle"></i>
+              <i class="fas fa-retweet"></i>
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Online Users</h4>
+                <h4>Total Ruangan Yang Dipinjam</h4>
               </div>
               <div class="card-body">
-                47
+                {{ $pinjam }}
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <canvas id="myChart"></canvas>
+        </div>
+        <div class="col">
+          <canvas id="myChart2"></canvas>
+        </div>
+      </div>
+      
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+      <script>
+        const data = {
+          labels: {!! json_encode($months) !!},
+          datasets: [{
+            label: 'Banyak Ruangan Yang Dipinjam',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: {!! json_encode($monthCount) !!},
+          }]
+        };
+      
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {}
+        };
+      </script>
+      <script>
+        const myChart = new Chart(
+          document.getElementById('myChart'),
+          config
+        );
+      </script>
+      <script>
+        const myChart = new Chart(
+          document.getElementById('myChart2'),
+          config
+        );
+      </script>
+      
+      
 
     </section>
 
