@@ -78,6 +78,9 @@
         <div class="col">
           <canvas id="myChart2"></canvas>
         </div>
+        <div class="col">
+          <canvas id="myChart3"></canvas>
+        </div>
       </div>
       
 
@@ -105,10 +108,52 @@
           config
         );
       </script>
+
       <script>
-        const myChart = new Chart(
+        const data2 = {
+          labels: {!! json_encode($nama) !!},
+          datasets: [{
+            label: 'Ruangan yang sering dipinjam',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: {!! json_encode($jumlah) !!},
+          }]
+        };
+
+        const config2 = {
+          type: 'bar',
+          data: data2,
+          options: {}
+        };
+      </script>
+      <script>
+        const myChart2 = new Chart(
           document.getElementById('myChart2'),
-          config
+          config2
+        );
+      </script>
+
+      <script>
+        const data3 = {
+          labels: {!! json_encode($namaUser) !!},
+          datasets: [{
+            label: 'User yang sering meminjam',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: {!! json_encode($jumlahPinjam) !!},
+          }]
+        };
+
+        const config3 = {
+          type: 'bar',
+          data: data3,
+          options: {}
+        };
+      </script>
+      <script>
+        const myChart3 = new Chart(
+          document.getElementById('myChart3'),
+          config3
         );
       </script>
       
