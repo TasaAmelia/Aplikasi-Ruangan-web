@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function read()
+    public function index(Request $request)
     {
         $data = Rental::where('status', 'Accept')->get()->groupBy(function($data){
-            return Carbon::parse($data->tanggal_akhir)->format('M');
+            return Carbon::parse($data->start)->format('M');
         });
         $ruangan = Rental::where('status', 'Accept')->with('room')->get()->groupBy(function($ruangan){
             return $ruangan->room->roomname;
@@ -43,15 +43,14 @@ class DashboardController extends Controller
             $namaUser[]=$userName;
             $jumlahPinjam[]=count($value);
         }
-
-
-
+        $tanggal = Rental::select('start', 'end', 'title')->where('status', 'Accept')->get();
+        
         return view('gedung.dashboard', [
             'title' => 'Dashboard',
             'user' => User::count(),
             'gedung' => Building::count(),
             'ruangan' => Room::count(),
-            'pinjam' => Rental::count(),
+            'pinjam' => Rental::where('status', 'accept')->count(),
             'data' => $data,
             'months' => $months,
             'monthCount' => $monthCount,
@@ -60,10 +59,18 @@ class DashboardController extends Controller
             'jumlah' => $jumlah,
             'pengguna' => $user,
             'namaUser' => $namaUser,
-            'jumlahPinjam' => $jumlahPinjam
+            'jumlahPinjam' => $jumlahPinjam,
+            'tanggal' => $tanggal
         ]);
         // return view('dashboard.calendar', [
         //     'title' => 'Dashboard'
         // ]);
+    }
+
+    public function create(Request $request){
+        if($request->ajax()){
+            $tanggal = Rental::whereDate('start', '2022-01-13')->whereDate('end', '2022-01-14')->get(['id', 'status', 'start', 'end']);
+            return response()->json($tanggal);
+        }
     }
 }

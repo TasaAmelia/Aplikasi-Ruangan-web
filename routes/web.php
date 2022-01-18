@@ -29,7 +29,7 @@ use GuzzleHttp\Middleware;
 |
 */
 
-Route::get('/', [DashboardController::class, 'read'])->middleware('auth');
+Route::resource('/', DashboardController::class)->middleware('auth');
 
 Route::resource('gedung', GedungController::class)->middleware('mix');
 

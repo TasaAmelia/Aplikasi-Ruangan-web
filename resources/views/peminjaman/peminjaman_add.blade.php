@@ -98,7 +98,7 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-8">
-                            <label for="description">Keterangan Peminjaman</label>
+                            <label for="description">Tujuan Peminjaman</label>
                             <input type="text" class="form-control @error('description') is-invalid @enderror"
                                 name="description" id="description" placeholder="Keterangan Peminjaman" value="{{ old('description') }}"
                                 required>

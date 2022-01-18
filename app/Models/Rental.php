@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Rental extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'title', 'start', 'end'
-    ];
 
     public function room(){
         return $this->belongsTo(Room::class);

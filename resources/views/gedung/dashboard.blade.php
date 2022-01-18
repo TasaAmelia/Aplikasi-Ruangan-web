@@ -71,6 +71,11 @@
           </div>
         </div>
       </div>
+      {{-- <div class="row">
+        <div class="col">
+          <div id='calendar'></div>
+        </div>
+      </div> --}}
       <div class="row">
         <div class="col">
           <canvas id="myChart"></canvas>
@@ -81,7 +86,57 @@
         <div class="col">
           <canvas id="myChart3"></canvas>
         </div>
+        <div class="col mt-5">
+          <div id="calendar"></div>
+        </div>
       </div>
+
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          selectable: true,
+          height: 900,
+          contentHeight: 600,
+          initialView: 'dayGridMonth',
+          // dateClick: function(info) {
+          //   alert('clicked ' + info.dateStr);
+          // },
+          select: function(startDate){
+            console.log(startDate);
+          },
+          // start: '', // will normally be on the left. if RTL, will be on the right
+          // center: '',
+          // end: '' // will normally be on the right. if RTL, will be on the left
+          headerToolbar: {
+            left: 'dayGridMonth,timeGridWeek,timeGridDay',
+            center: 'title',
+            right: 'today prevYear,prev,next,nextYear'
+          },
+          events: {!! json_encode($tanggal) !!},
+          eventTimeFormat: { // like '14:30:00'
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          },
+          displayEventEnd: true,
+          allDay: true
+        });
+        calendar.render();
+      });
+      $(document).ready(function () {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+      });
+
+    </script>
       
 
       <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>

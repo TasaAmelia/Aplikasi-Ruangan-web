@@ -52,10 +52,11 @@ class RentalController extends Controller
         $rent->room_id = $request->input('room_id');
         $rent->user_id = auth()->user()->id;
         $rent->jenis_pinjam = $request->input('jenis_pinjaman');
-        $rent->tanggal_awal = $request->input('tgl_awal_pinjam');
-        $rent->tanggal_akhir = $request->input('tgl_akhir_pinjam');
+        $rent->start = $request->input('tgl_awal_pinjam');
+        $rent->end = $request->input('tgl_akhir_pinjam');
+        $rent->title = $request->input('description');
         $rent->status = 'Pending';
-        $rent->keterangan = $request->input('description');
+        $rent->keterangan = 'Pending';
         $rent->save();
         return redirect('/');
     }
