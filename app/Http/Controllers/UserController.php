@@ -6,8 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-
-
 class UserController extends Controller
 {
     public function index(Request $request)
@@ -27,13 +25,13 @@ class UserController extends Controller
         ]);
     }
 
-
     public function store(Request $request)
     {
         $user = new User();
         $user->username = $request->input('username');
         $user->password = password_hash($request->input('usertype'), PASSWORD_DEFAULT);
         $user->usertype = $request->input('usertype');
+        $user->instansi = $request->input('instansi');
         $user->fullname = $request->input('fullname');
         $user->save();
         return redirect('/user')->with('statusAdd', 'Added data sucessfully !');
@@ -55,6 +53,7 @@ class UserController extends Controller
         $data->username = $request->username;
         $data->fullname = $request->fullname;
         $data->usertype = $request->usertype;
+        $data->instansi = $request->instansi;
         $data->save();
         return redirect('/user')->with('statusUpdate', 'Update data sucessfully');
     }

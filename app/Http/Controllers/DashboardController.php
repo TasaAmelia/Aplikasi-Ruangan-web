@@ -20,7 +20,7 @@ class DashboardController extends Controller
             return $ruangan->room->roomname;
         });
         $user = Rental::where('status', 'Accept')->with('user')->get()->groupBy(function($user){
-            return $user->user->username;
+            return $user->user->instansi;
         });
 
         $months=[];

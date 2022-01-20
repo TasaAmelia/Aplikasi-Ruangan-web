@@ -82,7 +82,7 @@
           <canvas id="myChart3"></canvas>
         </div>
       </div>
-      
+
 
       <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
       <script>
@@ -95,7 +95,7 @@
             data: {!! json_encode($monthCount) !!},
           }]
         };
-      
+
         const config = {
           type: 'bar',
           data: data,
@@ -137,7 +137,7 @@
         const data3 = {
           labels: {!! json_encode($namaUser) !!},
           datasets: [{
-            label: 'User yang sering meminjam',
+            label: 'Instansi yang sering meminjam',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: {!! json_encode($jumlahPinjam) !!},
@@ -156,8 +156,8 @@
           config3
         );
       </script>
-      
-      
+
+
 
     </section>
 

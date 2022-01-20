@@ -64,6 +64,7 @@
                                     <th>No</th>
                                     <th>Username</th>
                                     <th>Usertype</th>
+                                    <th>Instansi</th>
                                     <th>Fullname</th>
                                     <th>Action</th>
                                 </tr>
@@ -72,6 +73,7 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $user['username'] }}</td>
                                     <td>{{ $user['usertype'] }}</td>
+                                    <td>{{ $user['instansi'] }}</td>
                                     <td>{{ $user['fullname'] }}</td>
                                     <td><a href="/user/{{ $user->id }}/edit" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
