@@ -66,6 +66,7 @@
                                     <th>Jenis Pinjaman</th>
                                     <th>Tgl awal pinjam</th>
                                     <th>Tgl akhir pinjam</th>
+                                    <th>Tujuan Peminjaman</th>
                                     <th>Status</th>
                                     <th>Ket Peminjaman</th>
                                     <th>Action</th>
@@ -77,8 +78,9 @@
                                     <td>{{ $rent->room->roomname }}</td>
                                     <td>{{ $rent->user->username }}</td>
                                     <td>{{ $rent->jenis_pinjam }}</td>
-                                    <td>{{ $rent->tanggal_awal }}</td>
-                                    <td>{{ $rent->tanggal_akhir }}</td>
+                                    <td>{{ $rent->start }}</td>
+                                    <td>{{ $rent->end }}</td>
+                                    <td>{{ $rent->title }}</td>
                                     <td>{{ $rent->status }}</td>
                                     <td>{{ $rent->keterangan }}</td>
                                     <td>

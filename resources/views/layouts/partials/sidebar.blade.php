@@ -8,7 +8,7 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-              <li class="{{ ($title === "Dashboard") ? 'active' : '' }}">
+              <li class="{{ Request::is('/*') ? 'active': '' }}">
                 <a href="/" class="nav-link"><i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
@@ -63,7 +63,7 @@
             <a href="/laporan" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-file-alt"></i> Laporan
             </a>
-        </div>
+        </div>  
         @endcan
     </aside>
 </div>

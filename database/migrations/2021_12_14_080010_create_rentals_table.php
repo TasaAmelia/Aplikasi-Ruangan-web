@@ -19,9 +19,10 @@ class CreateRentalsTable extends Migration
             $table->foreignId('room_id');
             $table->foreignId('user_id');
             $table->string('jenis_pinjam');
-            $table->dateTime('tanggal_awal');
-            $table->dateTime('tanggal_akhir');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->string('status');
+            $table->string('title');
             $table->string('keterangan');
             $table->timestamps();
         });
