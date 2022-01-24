@@ -18,6 +18,7 @@ class UserFactory extends Factory
             'username' => $this->faker->name(),
             'password' => $this->faker->password(2,5),
             'usertype' => 'admin',
+            'instansi' => 'prodi',
             'fullname' => $this->faker->name(),
             'remember_token' => Str::random(10),
             // 'email' => $this->faker->unique()->safeEmail(),

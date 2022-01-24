@@ -46,6 +46,17 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-12">
+                            <label for="instansi">Instansi</label>
+                            <input type="text" class="form-control @error('instansi') is-invalid @enderror"
+                                name="instansi" id="instansi" placeholder="Instansi" value="{{ old('instansi') }}"
+                                required>
+                            @error('instansi')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-12">
                             <label for="fullname">Fullname</label>
                             <input type="text" class="form-control @error('fullname') is-invalid @enderror"
                                 name="fullname" id="fullname" placeholder="Fullname" value="{{ old('fullname') }}"
