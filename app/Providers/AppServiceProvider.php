@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -44,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('user', function(User $user){
             return $user->usertype === 'User';
         });
+
+        // config(['app.locale' => 'id']);
+        // Carbon::setLocale('id');
+        // date_default_timezone_set('Asia/Jakarta');
 
         Schema::defaultStringLength(191);
     }

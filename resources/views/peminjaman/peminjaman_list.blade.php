@@ -3,6 +3,7 @@
 @section("container")
 <section class="section">
     <div class="section-header">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
         <h1>List Peminjaman</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="/#">{{ $title }}</a></div>
@@ -81,7 +82,13 @@
                                     <td>{{ $rent->start }}</td>
                                     <td>{{ $rent->end }}</td>
                                     <td>{{ $rent->title }}</td>
-                                    <td>{{ $rent->status }}</td>
+                                    @if ($rent->status == 'Accept')
+                                    <td class="badge badge-success mt-2">{{ $rent->status }}</td>
+                                    @elseif($rent->status == 'Reject')
+                                    <td class="badge badge-danger mt-2">{{ $rent->status }}</td>
+                                    @elseif($rent->status == 'Pending')
+                                    <td class="badge badge-warning mt-2">{{ $rent->status }}</td>
+                                    @endif
                                     <td>{{ $rent->keterangan }}</td>
                                     <td>
                                         {{-- <form action="/rental/{{ $rent->id }}", method="post" class="d-inline">
@@ -128,6 +135,7 @@
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
         
     <script>
         $('.reject').click( function(){

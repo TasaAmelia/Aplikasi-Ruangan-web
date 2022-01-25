@@ -47,6 +47,7 @@ Route::get('getRoom/{id}', function ($id) {
 });
 
 Route::get('/laporan', [LaporanController::class, 'read']);
+Route::get('/laporan/print', [LaporanController::class, 'print']);
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
