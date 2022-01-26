@@ -12,12 +12,15 @@ class LaporanController extends Controller
     public function read()
     {
         $data = Rental::where('status', 'Accept')->get()->groupBy(function($data){
-            return Carbon::parse($data->start)->translatedFormat('l');
+            return Carbon::parse($data->start)->translatedFormat('F');
         });
 
-        $ruangan = Rental::where('status', 'Accept')->with('room')->get()->groupBy(function($ruangan){
+        $ruangan = Rental::where('status', 'Accept')->with('room')->get()->groupBy([function($ruangan){
             return $ruangan->room->roomname;
-        });
+        }, 
+        function($ruangan){
+            return Carbon::parse($ruangan->start)->translatedFormat('Y');
+        }]);
 
         $user = Rental::where('status', 'Accept')->with('user')->get()->groupBy(function($user){
             return $user->user->instansi;
@@ -32,9 +35,15 @@ class LaporanController extends Controller
 
         $labelNama=[];
         $jumlah=[];
+        $namaBulan=[];
+        $hitung=[];
         foreach($ruangan as $nama => $nilai){
             $labelNama[]=$nama;
-            $jumlah[]=count($nilai);
+            $jumlah[]=$nilai;
+            foreach($nilai as $i => $j){
+                $namaBulan[] = $i;
+                $hitung[] = count($j);
+            };
         }
 
         $namaUser=[];
@@ -50,9 +59,11 @@ class LaporanController extends Controller
             'bulan' => $months,
             'jumlahBulan' => $monthCount,
             'ruangan' => $labelNama,
-            'jumlahRuangan' => $jumlah,
+            'ruanganBulan' => $namaBulan,
+            'jumlahRuangan' => $hitung,
             'user' => $namaUser,
-            'jumlahPinjam' => $jumlahPinjam
+            'jumlahPinjam' => $jumlahPinjam,
+            
         ]);
     }
 

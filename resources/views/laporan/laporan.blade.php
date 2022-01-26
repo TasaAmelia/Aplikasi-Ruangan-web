@@ -28,17 +28,21 @@
                       </div>
                       <div class="table-responsive">
                           <table class="table table-striped" id="tabel_1">
-                              <tr>
-                                  {{-- <th>No</th> --}}
-                                  <th>Bulan</th>
-                                  <th>Jumlah Pinjaman</th>
-                              </tr>
-                              @foreach ($bulan as $i => $bulans)
-                                <tr>
-                                  <td>{{ $bulans }}</td>
-                                  <td>{{ $jumlahBulan[$i] }}</td>
-                                </tr>
-                                @endforeach
+                              <thead>
+                                  <tr>
+                                      {{-- <th>No</th> --}}
+                                      <th>Bulan</th>
+                                      <th>Jumlah Pinjaman</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($bulan as $i => $bulans)
+                                    <tr>
+                                        <td>{{ $bulans }}</td>
+                                        <td>{{ $jumlahBulan[$i] }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                           </table>
                       </div>
                   </div>
@@ -56,17 +60,22 @@
                       <a href="/laporan/print" class="btn btn-success mb-4"><i class="fas fa-print"></i>Print Laporan</a>
                       <div class="table-responsive">
                           <table class="table table-striped">
-                              <tr>
-                                  {{-- <th>No</th> --}}
-                                  <th>Nama Ruangan</th>
-                                  <th>Jumlah Pinjaman</th>
-                              </tr>
-                              @foreach ($ruangan as $j => $ruangans)
-                                <tr>
-                                  <td>{{ $ruangans }}</td>
-                                  <td>{{ $jumlahRuangan[$j] }}</td>
-                                </tr>
-                                @endforeach
+                              <thead>
+                                  <tr>
+                                      {{-- <th>No</th> --}}
+                                      <th>Nama Ruangan</th>
+                                      {{-- <th>Jangka Waktu</th> --}}
+                                      <th>Jumlah Pinjaman</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($ruangan as $j => $ruangans)
+                                    <tr>
+                                        <td>{{ $ruangans }}</td>
+                                        <td>{{ $jumlahRuangan[$j] }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                           </table>
                       </div>
                   </div>
@@ -84,17 +93,21 @@
                       <a href="/laporan/print" class="btn btn-success mb-4"><i class="fas fa-print"></i>Print Laporan</a>
                       <div class="table-responsive">
                           <table class="table table-striped">
-                              <tr>
-                                  {{-- <th>No</th> --}}
-                                  <th>Nama Instansi</th>
-                                  <th>Jumlah Pinjaman</th>
-                              </tr>
-                              @foreach ($user as $q => $users)
-                                <tr>
-                                  <td>{{ $users }}</td>
-                                  <td>{{ $jumlahPinjam[$q] }}</td>
-                                </tr>
-                                @endforeach
+                              <thead>
+                                  <tr>
+                                      {{-- <th>No</th> --}}
+                                      <th>Nama Instansi</th>
+                                      <th>Jumlah Pinjaman</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($user as $q => $users)
+                                    <tr>
+                                        <td>{{ $users }}</td>
+                                        <td>{{ $jumlahPinjam[$q] }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                           </table>
                       </div>
                   </div>
@@ -109,9 +122,11 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
         
     <script>
-        $(document).ready( function () {
-            $('#tabel_1').DataTable();
-        } );
+        let table = new DataTable('#table_1', {
+            // select: true,
+            // ordering: true,
+            // search: true
+        });
 
     </script>
 
