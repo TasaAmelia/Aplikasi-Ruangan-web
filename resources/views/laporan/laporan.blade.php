@@ -11,125 +11,117 @@
             <div class="breadcrumb-item">Laporan</div>
         </div>
       </div>
-    </section>
-    <div class="section-body">
-      <div class="row">
-          <div class="col-12">
-              <div class="card">
-                  <div class="card-header">
-                      <h4>Jumlah Ruangan Yang Dipinjam</h4>
+      <div class="section-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Jumlah Ruangan Yang Dipinjam</h4>
                     </div>
                     <div class="card-body">
-                      <a href="/laporan/print" class="btn btn-success mb-4"><i class="fas fa-print"></i>Print Laporan</a>
-                      <div class="btn-group mb-4">
-                          <a href="#" class="btn btn-primary">Day</a>
-                          <a href="#" class="btn btn-primary">Month</a>
-                          <a href="#" class="btn btn-primary">Year</a>
-                      </div>
-                      <div class="table-responsive">
-                          <table class="table table-striped" id="tabel_1">
-                              <thead>
-                                  <tr>
-                                      {{-- <th>No</th> --}}
-                                      <th>Bulan</th>
-                                      <th>Jumlah Pinjaman</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($bulan as $i => $bulans)
-                                    <tr>
-                                        <td>{{ $bulans }}</td>
-                                        <td>{{ $jumlahBulan[$i] }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                          </table>
-                      </div>
-                  </div>
-                  {{-- <div class="d-flex justify-content-center">{{ $buildings->links() }} </div> --}}
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-12">
-              <div class="card">
-                  <div class="card-header">
-                      <h4>Ruangan yang Dipinjam</h4>
+                        <form action="/laporan/print">
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="jangka">Jangka Waktu</label>
+                                    {{-- <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                        name="nama_ruangan" id="nama_ruangan" placeholder="J000" value="{{ old('nama_ruangan') }}"
+                                        required autofocus> --}}
+                                    <select name="jangka" id="jangka" class="form-control @error('jangka') is-invalid @enderror" onChange="myNewFunction(this);">
+                                        <option hidden>Pilih Jangka Waktu</option>
+                                        <option value="hari">Hari</option>
+                                        <option value="bulan">Bulan</option>
+                                        <option value="tahun">Tahun</option>
+                                    {{-- @foreach ($buildings as $building)
+                                        <option value="{{ $building->id }}">{{ $building->buildingname }}</option>
+                                    @endforeach --}}
+                                    </select>
+                                    @error('jangka')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-8" id="bulan">
+                                    <label for="bulan">Bulan</label>
+                                    <select name="bulan" class="form-control @error('bulan') is-invalid @enderror">
+                                        <option hidden>Pilih Bulan</option>
+                                        @foreach ($getMonths as $num => $months)
+                                        <option value="{{ $getMonthsNum[$num] }}">{{ $months }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('bulan')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-8" id="tahun">
+                                    <label for="tahun">Tahun</label>
+                                    <select name="tahun" id="tahun" class="form-control @error('tahun') is-invalid @enderror">
+                                    <option hidden>Pilih Tahun</option>
+                                        <option hidden>Pilih Tahun</option>
+                                        @foreach ($getYears as $years)
+                                        <option value="{{ $years }}">{{ $years }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('tahun')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                
+                                <div class="form-group col-md-8" id="hari">
+                                    <label for="hari">Tanggal Akhir Pinjam</label>
+                                    <input type="date" class="form-control @error('hari') is-invalid @enderror" 
+                                        name="hari" id="hari" placeholder="00-00-0000" value="{{ old('hari') }}">
+                                    @error('hari')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <a href="/laporan/print" class="btn btn-success">Print</a>
+                        </form>
                     </div>
-                    <div class="card-body">
-                      <a href="/laporan/print" class="btn btn-success mb-4"><i class="fas fa-print"></i>Print Laporan</a>
-                      <div class="table-responsive">
-                          <table class="table table-striped">
-                              <thead>
-                                  <tr>
-                                      {{-- <th>No</th> --}}
-                                      <th>Nama Ruangan</th>
-                                      {{-- <th>Jangka Waktu</th> --}}
-                                      <th>Jumlah Pinjaman</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($ruangan as $j => $ruangans)
-                                    <tr>
-                                        <td>{{ $ruangans }}</td>
-                                        <td>{{ $jumlahRuangan[$j] }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                          </table>
-                      </div>
-                  </div>
-                  {{-- <div class="d-flex justify-content-center">{{ $buildings->links() }} </div> --}}
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-12">
-              <div class="card">
-                  <div class="card-header">
-                      <h4>Instansi Yang Meminjam</h4>
-                    </div>
-                    <div class="card-body">
-                      <a href="/laporan/print" class="btn btn-success mb-4"><i class="fas fa-print"></i>Print Laporan</a>
-                      <div class="table-responsive">
-                          <table class="table table-striped">
-                              <thead>
-                                  <tr>
-                                      {{-- <th>No</th> --}}
-                                      <th>Nama Instansi</th>
-                                      <th>Jumlah Pinjaman</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($user as $q => $users)
-                                    <tr>
-                                        <td>{{ $users }}</td>
-                                        <td>{{ $jumlahPinjam[$q] }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                          </table>
-                      </div>
-                  </div>
-                  {{-- <div class="d-flex justify-content-center">{{ $buildings->links() }} </div> --}}
-              </div>
-          </div>
-      </div>
-  </div>
+                    {{-- <div class="d-flex justify-content-center">{{ $buildings->links() }} </div> --}}
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
-        
-    <script>
-        let table = new DataTable('#table_1', {
-            // select: true,
-            // ordering: true,
-            // search: true
-        });
-
-    </script>
 
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+
+<script>
+    var jangka = document.getElementById("jangka");
+    var bulan = document.getElementById("bulan");
+    var tahun = document.getElementById("tahun");
+    var hari = document.getElementById("hari");
+    bulan.style.display = 'none'
+    hari.style.display = 'none'
+    tahun.style.display = 'none'
+
+    function myNewFunction(sel) {
+    var a = sel.options[sel.selectedIndex].text;
+        if(a == "Bulan"){
+            bulan.style.display = ''
+            tahun.style.display = ''
+            hari.style.display = 'none'
+        }
+        else if(a == "Tahun"){
+            tahun.style.display = ''
+            bulan.style.display = 'none'
+            hari.style.display = 'none'
+        }
+        else if(a == "Hari"){
+            tahun.style.display = 'none'
+            bulan.style.display = 'none'
+            hari.style.display = ''
+        }
+    }
+</script>
 
 @endsection

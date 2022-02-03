@@ -70,7 +70,9 @@
                                     <th>Tujuan Peminjaman</th>
                                     <th>Status</th>
                                     <th>Ket Peminjaman</th>
+                                    @can('admin')
                                     <th>Action</th>
+                                    @endcan
                                 </tr>
                                 @foreach ($rents as $rent)
                                 <tr>
@@ -90,6 +92,7 @@
                                     <td class="badge badge-warning mt-2">{{ $rent->status }}</td>
                                     @endif
                                     <td>{{ $rent->keterangan }}</td>
+                                    @can('admin')
                                     <td>
                                         {{-- <form action="/rental/{{ $rent->id }}", method="post" class="d-inline">
                                             @method('put')
@@ -114,7 +117,8 @@
                                             <a href=# class="btn btn-success approve" data-id="{{ $rent->id }}"><i class="fas fa-check"></i></a>
                                             <a href=# class="btn btn-danger reject" data-id="{{ $rent->id }}"><i class="fas fa-times"></i></a>
                                             @endif
-                                            </td>
+                                        </td>
+                                        @endcan
                                                 {{-- <a href={{ "/ruanganDelete/" .$rent['id'] }} class="btn btn-danger trigger--fire-modal-7"
                                             onclick="return confirm('Are you sure want to delete ?')"><i
                                             class="fas fa-trash"></i></a> --}}
