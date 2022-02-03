@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rental;
-use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+use App\Models\Rental;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class LaporanController extends Controller
 {
@@ -154,6 +155,7 @@ class LaporanController extends Controller
         //     'jumlahruangan' => $jumlahRuangan,
         //     // 'jumlah' => $databulan
         // ]);
+        // Session::flash('download.in.the.next.request', 'filetodownload.pdf');
         return $pdf->download('data.pdf');
     }
 }
