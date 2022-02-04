@@ -19,7 +19,7 @@
                         <h4>Jumlah Ruangan Yang Dipinjam</h4>
                     </div>
                     <div class="card-body">
-                        <form action="/laporan/print">
+                        <form action="">
                             <div class="form-row">
                                 <div class="form-group col-md-8">
                                     <label for="jangka">Jangka Waktu</label>
@@ -82,8 +82,8 @@
                                     @enderror
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                            <a href="/laporan/print" class="btn btn-success">Print</a>
+                            <button class="btn btn-primary" type="submit" id="submit">Submit</button>
+                            {{-- <a href="/laporan/print" class="btn btn-success">Print</a> --}}
                         </form>
                     </div>
                     {{-- <div class="d-flex justify-content-center">{{ $buildings->links() }} </div> --}}
@@ -122,6 +122,46 @@
             hari.style.display = ''
         }
     }
+
+    $(document).ready(function(){
+        $("form").submit(function(e){
+
+            e.preventDefault();
+            var hari = $("select[name=hari]").val();
+            var bulan = $("select[name=bulan]").val();
+            var tahun = $("select[name=tahun]").val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type:'POST',
+                url:"laporan/print",
+                data: {
+                    hari: hari,
+                    bulan: bulan,
+                    tahun: tahun
+                },
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success:function(response){
+                    var blob = new Blob([response]);
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = "data.pdf";
+                    link.click();
+                    location.reload();
+                },
+                error: function(blob){
+                    console.log(blob);
+                }
+            });
+        });
+    });
+
 </script>
 
 @endsection

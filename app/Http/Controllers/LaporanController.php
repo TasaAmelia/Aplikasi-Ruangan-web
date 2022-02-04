@@ -138,7 +138,19 @@ class LaporanController extends Controller
             }
         }
 
-        
+        // $view = view('laporan.print-pdf', [
+        //     'jumahrentalbulan' => $jumahRental,
+        //     'user' => $namaUser,
+        //     'jumlahpinjam' => $jumlahPinjam,
+        //     'ruangan' => $namaRuangan,
+        //     'jumlahruangan' => $jumlahRuangan,
+        // ]);
+        // $html = $view->render();
+
+        // $pdf = PDF::loadHTML($html);
+        // $filename = base_path('data.pdf');
+        // $pdf->save($filename);
+        // $sheet = $pdf->setPaper('a4', 'landscape');
         $pdf = PDF::loadView('laporan.print-pdf', [
             'jumahrentalbulan' => $jumahRental,
             'user' => $namaUser,
@@ -146,6 +158,10 @@ class LaporanController extends Controller
             'ruangan' => $namaRuangan,
             'jumlahruangan' => $jumlahRuangan,
         ]);
+        $path = public_path('pdf/');
+        $fileName =  'data.pdf' ;
+        $pdf->save($path . '/' . $fileName);
+        $pdf = public_path('pdf/'.$fileName);
         // return view('laporan.print-pdf',[
         //     'title' => 'Laporan',
         //     'jumahrentalbulan' => $jumahRentalBulan,
@@ -156,6 +172,7 @@ class LaporanController extends Controller
         //     // 'jumlah' => $databulan
         // ]);
         // Session::flash('download.in.the.next.request', 'filetodownload.pdf');
-        return $pdf->download('data.pdf');
+        
+        return response()->download($pdf);
     }
 }

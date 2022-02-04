@@ -21,9 +21,10 @@
           </tr>
         </thead>
         <tbody>
+          <?php $no = 1?>
           @foreach ($ruangan as $j => $ruangans)
           <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{ $no++ }}</th>
             <td>{{ $ruangans }}</td>
             <td>{{ $jumlahruangan[$j] }}</td>
           </tr>
@@ -42,9 +43,10 @@
           </tr>
         </thead>
         <tbody>
+          <?php $num = 1?>
           @foreach ($user as $i => $users)
           <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{ $num++ }}</th>
             <td>{{ $users }}</td>
             <td>{{ $jumlahpinjam[$i] }}</td>
           </tr>
