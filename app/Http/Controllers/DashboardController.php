@@ -6,8 +6,10 @@ use App\Models\Building;
 use App\Models\Rental;
 use App\Models\Room;
 use App\Models\User;
+use App\Notifications\RentNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class DashboardController extends Controller
 {

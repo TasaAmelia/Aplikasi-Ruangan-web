@@ -4,9 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 
 class user
 {
+    use Notifiable;
     /**
      * Handle an incoming request.
      *

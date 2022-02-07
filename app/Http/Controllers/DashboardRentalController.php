@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Building;
+use App\Models\User;
 use App\Models\Rental;
-use App\Models\Room;
+use App\Models\Building;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use App\Notifications\RentNotification;
+use Illuminate\Support\Facades\Notification;
 
 class DashboardRentalController extends Controller
 {
@@ -67,6 +70,7 @@ class DashboardRentalController extends Controller
             // $data['user_id'] = auth()->user()->id;
             // Rental::create($data);
             
+        $users = User::where('username', 'Admin')->get();
         $rent = new Rental();
         $rent->building_id = $request->input('gedung_id');
         $rent->room_id = $request->input('room_id');
@@ -78,6 +82,11 @@ class DashboardRentalController extends Controller
         $rent->keterangan = 'Pending';
         $rent->title = $request->input('description');
         $rent->save();
+        $rents = Rental::where('status', 'Pending')->with(['room', 'user'])->get();
+        // dd($rents);
+        // event(new Registered($user = $this->create($request->all())));
+        Notification::send($users, new RentNotification($rent));
+        // $users->notify(new RentNotification());
         return redirect('/rental');
 
     }

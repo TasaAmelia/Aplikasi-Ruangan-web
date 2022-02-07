@@ -82,7 +82,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit" id="submit">Submit</button>
+                            <button class="btn btn-success" type="submit" id="submit"><i class="fas fa-print"></i>  Print</button>
                             {{-- <a href="/laporan/print" class="btn btn-success">Print</a> --}}
                         </form>
                     </div>
