@@ -140,12 +140,24 @@
 
 
       <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+
+      <script>
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++ ) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+      </script>
+
       <script>
         const data = {
           labels: {!! json_encode($months) !!},
           datasets: [{
             label: 'Banyak Ruangan Yang Dipinjam',
-            backgroundColor: 'rgb(255, 99, 132)',
+            backgroundColor: getRandomColor(),
             borderColor: 'rgb(255, 99, 132)',
             data: {!! json_encode($monthCount) !!},
           }]
@@ -169,7 +181,7 @@
           labels: {!! json_encode($nama) !!},
           datasets: [{
             label: 'Ruangan yang sering dipinjam',
-            backgroundColor: 'rgb(255, 99, 132)',
+            backgroundColor: getRandomColor(),
             borderColor: 'rgb(255, 99, 132)',
             data: {!! json_encode($jumlah) !!},
           }]
@@ -193,7 +205,7 @@
           labels: {!! json_encode($namaUser) !!},
           datasets: [{
             label: 'Instansi yang sering meminjam',
-            backgroundColor: 'rgb(255, 99, 132)',
+            backgroundColor: getRandomColor(),
             borderColor: 'rgb(255, 99, 132)',
             data: {!! json_encode($jumlahPinjam) !!},
           }]
