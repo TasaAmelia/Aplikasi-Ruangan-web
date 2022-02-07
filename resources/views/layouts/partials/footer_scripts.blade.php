@@ -16,3 +16,9 @@
 
 <!-- Page Specific JS File -->
 <script src="{{ asset('assets/js/page/components-table.js') }}"></script>
+<script>
+    function markasread(){
+        $.get('/markasread'),
+        location.reload()
+    }
+</script>
