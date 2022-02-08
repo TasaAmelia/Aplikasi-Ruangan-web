@@ -21,9 +21,6 @@
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="gedung_id">Nama Gedung</label>
-                            {{-- <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                name="nama_ruangan" id="nama_ruangan" placeholder="J000" value="{{ old('nama_ruangan') }}"
-                                required autofocus> --}}
                             <select name="gedung_id" id="gedung_id"class="form-control @error('gedung_id') is-invalid @enderror">
                                 <option hidden>Pilih Gedung</option>
                             @foreach ($buildings as $building)
@@ -38,9 +35,6 @@
                         </div>
                         <div class="form-group col-md-8">
                             <label for="room_id">Nama Ruangan</label>
-                            {{-- <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                name="nama_ruangan" id="nama_ruangan" placeholder="J000" value="{{ old('nama_ruangan') }}"
-                                required autofocus> --}}
                             <select name="room_id" id="room_id" class="form-control @error('room_id') is-invalid @enderror">
                             </select>
                             @error('room_id')
@@ -51,12 +45,12 @@
                         </div>
                         <div class="form-group col-md-8">
                             <label for="jenis_pinjaman">Jenis Pinjaman</label>
-                            <select name="jenis_pinjaman" id="jenis_pinjaman"
-                                class="form-control @error('jenis_pinjaman') is-invalid @enderror">
+                            <select name="jenis_pinjaman" id="jenis" class="form-control @error('jenis_pinjaman') is-invalid @enderror" onChange="myNewFunction(this);">
+                                <option hidden>Pilih Jenis Pinjaman</option>
                                 <option value="Jangka Pendek" @if (old('jenis_pinjaman')=="Jangka Pendek" ) {{ 'selected' }} @endif>Jangka Pendek
                                 </option>
-                                <option value="Jangka Panjang" @if (old('jenis_pinjaman')=="Jangka Panjang" ) {{ 'selected' }} @endif>
-                                    Jangka Panjang</option>
+                                <option value="Jangka Panjang" @if (old('jenis_pinjaman')=="Jangka Panjang" ) {{ 'selected' }} @endif>Jangka Panjang
+                                </option>
                             </select>
                             @error('jenis_pinjaman')
                             <div class="invalid-feedback">
@@ -64,33 +58,43 @@
                             </div>
                             @enderror
                         </div>
-                        {{-- <div class="form-group col-md-8">
-                            <label for="nama_peminjam">Nama Peminjam</label>
-                            <input type="text" class="form-control @error('nama_peminjam') is-invalid @enderror"
-                                name="nama_peminjam" id="nama_peminjam" placeholder="nama peminjam" value="{{ old('nama_peminjam') }}"
-                                required>
-                            @error('nama_peminjam')
+                        <div class="form-group col-md-8" id="waktu">
+                            <label for="jangka">Jangka Waktu</label>
+                            <select name="jangka" class="form-control @error('jangka') is-invalid @enderror">
+                                <option hidden>Pilih Jangka Waktu</option>
+                                <option value="bulan">Bulan</option>
+                                <option value="tahun">Tahun</option>
+                            </select>
+                            @error('jangka')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
-                        </div> --}}
-                        <div class="form-group col-md-8">
+                        </div>
+                        <div class="form-group col-md-8" id="jumlah">
+                            <label for="jumlah">Jumlah Bulan/Tahun</label>
+                            <input type="number" class="form-control @error('jumlah') is-invalid @enderror"
+                                name="jumlah" id="jumlah" placeholder="Keterangan Peminjaman" value="{{ old('jumlah') }}">
+                            @error('jumlah')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-8" id="tgl_awal">
                             <label for="tgl_awal_pinjam">Tanggal Awal Pinjam</label>
                             <input type="datetime-local" class="form-control @error('tgl_awal_pinjam') is-invalid @enderror"
-                                name="tgl_awal_pinjam" id="tgl_awal_pinjam" placeholder="00-00-0000" value="{{ old('tgl_awal_pinjam') }}"
-                                required autofocus>
+                                name="tgl_awal_pinjam" id="tgl_awal_pinjam" placeholder="00-00-0000" value="{{ old('tgl_awal_pinjam') }}">
                             @error('tgl_awal_pinjam')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-8" id="tgl_akhir">
                             <label for="tgl_akhir_pinjam">Tanggal Akhir Pinjam</label>
                             <input type="datetime-local" class="form-control @error('tgl_akhir_pinjam') is-invalid @enderror" 
-                                name="tgl_akhir_pinjam" id="tgl_akhir_pinjam" placeholder="00-00-0000" value="{{ old('tgl_akhir_pinjam') }}"
-                                required autofocus>
+                                name="tgl_akhir_pinjam" id="tgl_akhir_pinjam" placeholder="00-00-0000" value="{{ old('tgl_akhir_pinjam') }}">
                             @error('tgl_akhir_pinjam')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -144,27 +148,33 @@
            }
         });
         });
+    </script>
+    <script>
+        var jenis = document.getElementById("jenis");
+        var awal = document.getElementById("tgl_awal");
+        var akhir = document.getElementById("tgl_akhir");
+        var waktu = document.getElementById("waktu");
+        var jumlah = document.getElementById("jumlah");
+        awal.style.display = 'none'
+        akhir.style.display = 'none'
+        waktu.style.display = 'none'
+        jumlah.style.display = 'none'
 
-    //     $('.livesearch').select2({
-    //     placeholder: 'Select movie',
-    //     ajax: {
-    //         url: '/ajax-autocomplete-search',
-    //         dataType: 'json',
-    //         delay: 250,
-    //         processResults: function (data) {
-    //             return {
-    //                 results: $.map(data, function (item) {
-    //                     return {
-    //                         text: item.roomname,
-    //                         id: item.id
-    //                     }
-    //                 })
-    //             };
-    //         },
-    //         cache: true
-    //     }
-    // });
-
+        function myNewFunction(sel) {
+        var a = sel.options[sel.selectedIndex].text;
+            if(a == "Jangka Pendek"){
+                awal.style.display = ''
+                akhir.style.display = ''
+                waktu.style.display = 'none'
+                jumlah.style.display = 'none'
+            }
+            else {
+                awal.style.display = 'none'
+                akhir.style.display = 'none'
+                waktu.style.display = ''
+                jumlah.style.display = ''
+            }
+        }
     </script>
 
 </section>

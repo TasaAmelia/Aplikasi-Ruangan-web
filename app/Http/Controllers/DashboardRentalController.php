@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\RentNotification;
 use App\Notifications\UserRentNotification;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
 
 class DashboardRentalController extends Controller
@@ -60,25 +61,34 @@ class DashboardRentalController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = $request->validate([
-            //     'gedung_id' => 'required',
-            //     'room_id' => 'required',
-            //     'jenis_pinjaman' => 'required',
-            //     'tgl_awal_pinjam' => 'required',
-            //     'tgl_akhir_pinjam' => 'required',
-            //     'description' => 'required'
-            // ]);
-            // $data['user_id'] = auth()->user()->id;
-            // Rental::create($data);
-            
+        $tgl_awal = $request->input('tgl_awal_pinjam');
+        $tgl_akhir = $request->input('tgl_akhir_pinjam');
+        $jangka = $request->input('jangka');
+        $jumlah = $request->input('jumlah');
+
+        if (empty($tgl_awal) && empty($tgl_akhir)) {
+            if($jangka == 'bulan'){
+                $start = Carbon::now();
+                $end = Carbon::now()->addMonths($jumlah);
+            }elseif($jangka == 'tahun'){
+                $start = Carbon::now();
+                $end = Carbon::now()->addYears($jumlah);
+            }
+        }
+
+        elseif(empty($jumlah) && $jangka == 'Pilih Jangka Waktu'){
+            $start = $tgl_awal;
+            $end = $tgl_akhir;
+        }
+        
         $users = User::where('usertype', 'Admin')->get();
         $rent = new Rental();
         $rent->building_id = $request->input('gedung_id');
         $rent->room_id = $request->input('room_id');
         $rent->user_id = auth()->user()->id;
         $rent->jenis_pinjam = $request->input('jenis_pinjaman');
-        $rent->start = $request->input('tgl_awal_pinjam');
-        $rent->end = $request->input('tgl_akhir_pinjam');
+        $rent->start = $start;
+        $rent->end = $end;
         $rent->status = 'Pending';
         $rent->keterangan = 'Pending';
         $rent->title = $request->input('description');
