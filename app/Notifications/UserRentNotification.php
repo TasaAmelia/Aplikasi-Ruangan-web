@@ -2,25 +2,24 @@
 
 namespace App\Notifications;
 
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RentNotification extends Notification
+class UserRentNotification extends Notification
 {
     use Queueable;
-    protected $rent;
+    protected $data;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($rent)
+    public function __construct($data)
     {
-        $this->rent = $rent;
+        $this->data = $data;
     }
 
     /**
@@ -57,9 +56,9 @@ class RentNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'ruangan' => $this->rent->room->roomname,
-            'user' => $this->rent->user->username,
-            'message' => 'menunggu konfirmasi'
+            'message' => $this->data->keterangan,
+            'user' => $this->data->user->username,
+            'ruangan' => $this->data->room->roomname,
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Building;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\RentNotification;
+use App\Notifications\UserRentNotification;
 use Illuminate\Support\Facades\Notification;
 
 class DashboardRentalController extends Controller
@@ -23,7 +24,7 @@ class DashboardRentalController extends Controller
         // with(['building', 'room'])->where('user_id', auth()->user()->id)->paginate(5)
         return view('peminjaman.peminjaman_list', [
             'title' => 'Peminjaman',
-            'rents' => Rental::with(['building', 'room'])->paginate(5)
+            'rents' => Rental::with(['building', 'room', 'user'])->paginate(5)
         ]); 
     }
 
@@ -70,7 +71,7 @@ class DashboardRentalController extends Controller
             // $data['user_id'] = auth()->user()->id;
             // Rental::create($data);
             
-        $users = User::where('username', 'Admin')->get();
+        $users = User::where('usertype', 'Admin')->get();
         $rent = new Rental();
         $rent->building_id = $request->input('gedung_id');
         $rent->room_id = $request->input('room_id');
@@ -82,11 +83,7 @@ class DashboardRentalController extends Controller
         $rent->keterangan = 'Pending';
         $rent->title = $request->input('description');
         $rent->save();
-        $rents = Rental::where('status', 'Pending')->with(['room', 'user'])->get();
-        // dd($rents);
-        // event(new Registered($user = $this->create($request->all())));
         Notification::send($users, new RentNotification($rent));
-        // $users->notify(new RentNotification());
         return redirect('/rental');
 
     }
@@ -127,19 +124,17 @@ class DashboardRentalController extends Controller
      */
     public function update(Request $request, Rental $rental)
     {
-        // dd($request->input('message'));
-        // dd($request->input('status'));
-        $data = Rental::find($rental -> id);
-        // // dd($data);
+        $data = Rental::find($rental->id);
+        $user = User::find($data->user_id);
         $data->status = $request->input('status');
         $data->keterangan = $request->input('message');
         $data->save();
+        Notification::send($user, new UserRentNotification($data));
         return response()->json(
             [
               'success' => true,
               'status' => 200
             ]);
-        // return redirect('/rental')->with('success', true);
     }
 
     /**

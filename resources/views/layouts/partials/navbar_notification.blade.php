@@ -11,7 +11,7 @@
                 <i class="fas fa-code"></i>
             </div>
             <div class="dropdown-item-desc">
-                {{ $notification->data['user'] }} Meminjam Ruangan {{ $notification->data['ruangan'] }}
+                Ruangan {{ $notification->data['ruangan'] }} Dengan Peminjam {{ $notification->data['user'] }} Status nya {{ $notification->data['message'] }}
             </div>
         </div>
         @endforeach
