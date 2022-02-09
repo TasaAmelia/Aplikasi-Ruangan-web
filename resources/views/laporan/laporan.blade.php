@@ -19,14 +19,14 @@
                         <h4>Jumlah Ruangan Yang Dipinjam</h4>
                     </div>
                     <div class="card-body">
-                        <form action="">
+                        <form action="laporan/print">
                             <div class="form-row">
                                 <div class="form-group col-md-8">
                                     <label for="jangka">Jangka Waktu</label>
                                     {{-- <input type="text" class="form-control @error('username') is-invalid @enderror"
                                         name="nama_ruangan" id="nama_ruangan" placeholder="J000" value="{{ old('nama_ruangan') }}"
                                         required autofocus> --}}
-                                    <select name="jangka" id="jangka" class="form-control @error('jangka') is-invalid @enderror" onChange="myNewFunction(this);">
+                                    <select name="jangka" id="jangka" class="form-control @error('jangka') is-invalid @enderror" onChange="myNewFunction(this);" required>
                                         <option hidden>Pilih Jangka Waktu</option>
                                         <option value="hari">Hari</option>
                                         <option value="bulan">Bulan</option>
@@ -59,7 +59,6 @@
                                     <label for="tahun">Tahun</label>
                                     <select name="tahun" id="tahun" class="form-control @error('tahun') is-invalid @enderror">
                                     <option hidden>Pilih Tahun</option>
-                                        <option hidden>Pilih Tahun</option>
                                         @foreach ($getYears as $years)
                                         <option value="{{ $years }}">{{ $years }}</option>
                                         @endforeach
@@ -72,7 +71,7 @@
                                 </div>
                                 
                                 <div class="form-group col-md-8" id="hari">
-                                    <label for="hari">Tanggal Akhir Pinjam</label>
+                                    <label for="hari">Tanggal Pinjam</label>
                                     <input type="date" class="form-control @error('hari') is-invalid @enderror" 
                                         name="hari" id="hari" placeholder="00-00-0000" value="{{ old('hari') }}">
                                     @error('hari')
@@ -127,7 +126,7 @@
         $("form").submit(function(e){
 
             e.preventDefault();
-            var hari = $("select[name=hari]").val();
+            var hari = $("input[name=hari]").val();
             var bulan = $("select[name=bulan]").val();
             var tahun = $("select[name=tahun]").val();
 

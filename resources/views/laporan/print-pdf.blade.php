@@ -1,60 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Invoice - #123</title>
+
+    <style type="text/css">
+        @page {
+            margin: 0px;
+        }
+        body {
+            margin: 0px;
+        }
+        * {
+            font-family: Verdana, Arial, sans-serif;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+        table {
+            font-size: x-small;
+        }
+        tfoot tr td {
+            font-weight: bold;
+            font-size: x-small;
+        }
+        .invoice table {
+            margin: 15px;
+        }
+        .invoice h3 {
+            margin-left: 15px;
+        }
+        .information {
+            background-color: #60A7A6;
+            color: #FFF;
+        }
+        .information .logo {
+            margin: 5px;
+        }
+        .information table {
+            padding: 10px;
+        }
+    </style>
+
 </head>
 <body>
-    <h3 class="text-center">Laporan Peminjaman Ruangan</h3>
-    <h5 class="mt-4">Jumlah Ruangan Yang Dipinjam</h5>
-    <h6>{{ $jumahrentalbulan }}</h6>
-    <h4 class="text-center mt-5">Ruangan Yang Dipinjam</h4>
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Nama Ruangan</th>
-            <th scope="col">Jumlah Pinjaman</th>
-          </tr>
+
+    <div class="information">
+        <table width="100%">
+            <tr>
+                <td align="left" style="width: 40%;">
+                    <h1>Laporan Peminjaman Ruangan</h1>
+                </td>
+                <td align="right" style="width: 40%;">
+                    <h3>Universitas Langlangbuana</h3>
+                    <pre>
+                        Jl. Karapitan No.116, Cikawao,
+                        Kec. Lengkong, Kota Bandung,
+                        Jawa Barat 40261
+                    </pre>
+                </td>
+            </tr>
+    
+        </table>
+    </div>
+
+
+<br/>
+
+<div class="invoice">
+    <h3>Jumlah Ruangan Yang Dipinjam</h3>
+    <h3>{{ $getdate }} : {{ $jumahrentalbulan }}</h3>
+</div>
+
+<div class="invoice">
+    <h3>Ruangan Yang Dipinjam</h3>
+    <table width="100%" align="left">
+        <thead align="left">
+        <tr>
+            <th>No</th>
+            <th>Nama Ruangan</th>
+            <th>Jumlah Pinjaman</th>
+        </tr>
         </thead>
         <tbody>
-          <?php $no = 1?>
-          @foreach ($ruangan as $j => $ruangans)
-          <tr>
-            <th scope="row">{{ $no++ }}</th>
-            <td>{{ $ruangans }}</td>
-            <td>{{ $jumlahruangan[$j] }}</td>
-          </tr>
-          @endforeach
+            <?php $no = 1?>
+            @foreach ($ruangan as $j => $ruangans)
+            <tr>
+              <td scope="row">{{ $no++ }}</td>
+              <td>{{ $ruangans }}</td>
+              <td>{{ $jumlahruangan[$j] }}</td>
+            </tr>
+            @endforeach
         </tbody>
-      </table>
-
-      <h4 class="text-center mt-5">Instansi Yang Meminjam</h4>
-
-      <table class="table table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Nama Instansi</th>
-            <th scope="col">Jumlah Pinjaman</th>
-          </tr>
+    </table>
+</div>
+<div class="invoice">
+    <h3>Instansi Yang Meminjam</h3>
+    <table width="100%" align="left">
+        <thead align="left">
+        <tr>
+            <th>No</th>
+            <th>Nama Instansi</th>
+            <th>Jumlah Pinjaman</th>
+        </tr>
         </thead>
         <tbody>
-          <?php $num = 1?>
-          @foreach ($user as $i => $users)
-          <tr>
-            <th scope="row">{{ $num++ }}</th>
-            <td>{{ $users }}</td>
-            <td>{{ $jumlahpinjam[$i] }}</td>
-          </tr>
-          @endforeach
+            <?php $num = 1?>
+            @foreach ($user as $i => $users)
+            <tr>
+                <td scope="row">{{ $num++ }}</td>
+                <td>{{ $users }}</td>
+                <td>{{ $jumlahpinjam[$i] }}</td>
+            </tr>
+            @endforeach
         </tbody>
-      </table>
+    </table>
+</div>
 
+<div class="information" style="position: absolute; bottom: 0; width:100%">
+    <table width="100%">
+        <tr>
+            <td align="left" style="width: 50%;">
+                &copy; {{ date('Y') }} Universitas Langlangbuana - All rights reserved.
+            </td>
+            <td align="right" style="width: 50%;">
+                PinjamRuang 2018
+            </td>
+        </tr>
+
+    </table>
+</div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </html>
