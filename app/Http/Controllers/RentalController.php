@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Rental;
 use App\Models\Building;
 use Illuminate\Http\Request;
+use App\Notifications\RentNotification;
+use Illuminate\Support\Facades\Notification;
 
 class RentalController extends Controller
 {
@@ -47,6 +50,7 @@ class RentalController extends Controller
      */
     public function store(Request $request)
     {
+        $users = User::where('usertype', 'Admin')->get();
         $rent = new Rental();
         $rent->building_id = $request->input('gedung_id');
         $rent->room_id = $request->input('room_id');
@@ -58,6 +62,7 @@ class RentalController extends Controller
         $rent->status = 'Pending';
         $rent->keterangan = 'Pending';
         $rent->save();
+        Notification::send($users, new RentNotification($rent));
         return redirect('/');
     }
 

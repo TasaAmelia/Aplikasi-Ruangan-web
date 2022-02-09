@@ -67,6 +67,7 @@
                                     {{-- <th>Nama Peminjam</th> --}}
                                     <th>Tgl awal pinjam</th>
                                     <th>Tgl akhir pinjam</th>
+                                    <th>Status</th>
                                     <th>Ket Peminjaman</th>
                                 </tr>
                                 @foreach ($rents as $rent)
@@ -75,8 +76,15 @@
                                     <td>{{ $rent->building->buildingname }}</td>
                                     <td>{{ $rent->room->roomname }}</td>
                                     <td>{{ $rent->jenis_pinjam }}</td>
-                                    <td>{{ $rent->tanggal_awal }}</td>
-                                    <td>{{ $rent->tanggal_akhir }}</td>
+                                    <td>{{ $rent->start }}</td>
+                                    <td>{{ $rent->end }}</td>
+                                    @if ($rent->status == 'Accept')
+                                    <td class="badge badge-success mt-2">{{ $rent->status }}</td>
+                                    @elseif($rent->status == 'Reject')
+                                    <td class="badge badge-danger mt-2">{{ $rent->status }}</td>
+                                    @elseif($rent->status == 'Pending')
+                                    <td class="badge badge-warning mt-2">{{ $rent->status }}</td>
+                                    @endif
                                     <td>{{ $rent->keterangan }}</td>
                                 </tr>
                                 @endforeach
