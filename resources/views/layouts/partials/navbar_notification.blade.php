@@ -1,7 +1,7 @@
 <div class="dropdown-menu dropdown-list dropdown-menu-right">
     <div class="dropdown-header">Notifications
         <div class="float-right">
-        <a href="#" onclick="markasread()">Mark All As Read</a>
+        <a href="#" onclick="abc()">Mark All As Read</a>
     </div>
     </div>
     <div class="dropdown-list-content dropdown-list-icons">
@@ -11,7 +11,7 @@
                 <i class="fas fa-code"></i>
             </div>
             <div class="dropdown-item-desc">
-                Ruangan {{ $notification->data['ruangan'] }} Dengan Peminjam {{ $notification->data['user'] }} Status nya {{ $notification->data['message'] }}
+                {{ $notification->data['ruangan'] }} Dengan Peminjam {{ $notification->data['user'] }} Memiliki Status {{ $notification->data['message'] }}
             </div>
         </div>
         @endforeach
