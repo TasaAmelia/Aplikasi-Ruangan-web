@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Invoice - #123</title>
+    <title>Laporan Peminjaman</title>
 
     <style type="text/css">
         @page {
