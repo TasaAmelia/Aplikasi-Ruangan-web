@@ -37,8 +37,8 @@
                 </a>
             </li>
             @endcan
-            <li class="menu-header">Peminjaman</li>
             @can('mix')
+            <li class="menu-header">Peminjaman</li>
             <li class="{{ Request::is('rental*') ? 'active': '' }}">
                 <a href="/rental" class="nav-link"><i class="fas fa-pencil-ruler"></i>
                     <span>Peminjaman</span>

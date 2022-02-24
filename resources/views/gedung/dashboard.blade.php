@@ -9,6 +9,7 @@
             <div class="breadcrumb-item">Dashboard</div>
         </div>
       </div>
+      @auth
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
           <div class="card card-statistic-1">
@@ -86,13 +87,14 @@
         <div class="col">
           <canvas id="myChart3"></canvas>
         </div>
+        @endauth
         <div class="col mt-5">
           <div id="calendar"></div>
         </div>
       </div>
-
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css' rel='stylesheet' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+      
+      <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css' rel='stylesheet' />
+      <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 
     <script>

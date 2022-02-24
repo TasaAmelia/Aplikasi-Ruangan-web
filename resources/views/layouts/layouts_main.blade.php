@@ -16,17 +16,25 @@
                                     class="fas fa-bars"></i></a></li>
                     </ul>
                 </form>
+                @auth
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
                         class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
                         @include('layouts.partials.navbar_notification')
                     </li>
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
-                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            @include('layouts.partials.navbar_user_activities')
-                        </a>
+                        class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        @include('layouts.partials.navbar_user_activities')
+                    </a>
                     </li>
                 </ul>
+                @else
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link notification-toggle nav-link-lg"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </li>
+                </ul>
+                @endauth
             </nav>
 
             @include('layouts.partials.sidebar')
