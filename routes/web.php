@@ -37,7 +37,7 @@ Route::resource('roomtype', RoomTypeController::class)->middleware('mix');
 
 Route::resource('ruangan', RoomController::class)->middleware('mix');
 
-Route::resource('user', UserController::class)->middleware('mix');
+Route::resource('user', UserController::class);
 
 Route::resource('rental', DashboardRentalController::class)->middleware('mix');
 Route::resource('rents', RentalController::class)->middleware('user');

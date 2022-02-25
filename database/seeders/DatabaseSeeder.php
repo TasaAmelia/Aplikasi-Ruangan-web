@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,13 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(20)->create();
+        // \App\Models\User::factory(20)->create();
         \App\Models\Building::factory(20)->create();
         \App\Models\Room::factory(20)->create();
         \App\Models\RoomType::factory(20)->create();
         \App\Models\User::create([
             'username' => 'Admin',
-            'password' => 'Admin',
+            'password' => Hash::make('Admin'),
             'usertype' => 'Admin',
             'instansi' => 'Fakultas Teknik',
             'fullname' => 'Admin',
@@ -28,7 +29,7 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\User::create([
             'username' => 'SuperAdmin',
-            'password' => 'SuperAdmin',
+            'password' => Hash::make('SuperAdmin'),
             'usertype' => 'SuperAdmin',
             'instansi' => 'Fakultas Teknik',
             'fullname' => 'SuperAdmin',
